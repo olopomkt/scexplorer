@@ -1,0 +1,456 @@
+<title>SC Explorer — Identidade</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,500;0,700;0,800;1,800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: prancha de marca em coluna única, do símbolo às telas; dark-first como o app. */
+:root{
+  --fundo:#050D18; --sup:#0A1A2C; --sup-2:#10263D; --borda:rgba(255,255,255,.08);
+  --texto:#EEF4FA; --texto-2:#A9BCCF; --texto-3:#6F849B;
+  --lagoa:#1FE0BE; --ceu:#46C2FF; --coral:#FF7A59; --sol:#FFD166;
+  --f-titulo:"Plus Jakarta Sans",ui-sans-serif,system-ui,sans-serif;
+  --f-texto:"Inter",ui-sans-serif,system-ui,sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --fundo:#F6F2EB; --sup:#FFFFFF; --sup-2:#EEF2F5; --borda:rgba(10,27,46,.10);
+  --texto:#0A1B2E; --texto-2:#3F5368; --texto-3:#6A7C8F;
+  --lagoa:#0B9C86; --ceu:#1C7FD1; --coral:#E85D3A; --sol:#C98A00; color-scheme:light}}
+:root[data-theme="light"]{
+  --fundo:#F6F2EB; --sup:#FFFFFF; --sup-2:#EEF2F5; --borda:rgba(10,27,46,.10);
+  --texto:#0A1B2E; --texto-2:#3F5368; --texto-3:#6A7C8F;
+  --lagoa:#0B9C86; --ceu:#1C7FD1; --coral:#E85D3A; --sol:#C98A00; color-scheme:light}
+
+*{box-sizing:border-box}
+body{background:var(--fundo);color:var(--texto);font:15px/1.55 var(--f-texto);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3{font-family:var(--f-titulo);letter-spacing:-.02em;text-wrap:balance;margin:0}
+h2{font-size:clamp(24px,3vw,30px);font-weight:800}
+h3{font-size:17px;font-weight:700}
+p{margin:0}
+.rotulo{font:600 11px/1 var(--f-texto);letter-spacing:.14em;text-transform:uppercase;color:var(--lagoa)}
+.sec{display:grid;gap:24px;padding-top:64px}
+.sec-cab{display:grid;gap:10px;max-width:68ch}
+.sec-cab p{color:var(--texto-2)}
+.grade{display:grid;gap:16px}
+.painel{background:var(--sup);border:1px solid var(--borda);border-radius:22px;padding:24px;min-width:0}
+code,.hex{font:500 12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* hero com a cena do pôr do sol */
+.hero{position:relative;border-radius:0 0 32px 32px;overflow:hidden;min-height:420px;display:flex;align-items:flex-end}
+.hero>svg{position:absolute;inset:0;width:100%;height:100%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,13,24,.55),rgba(5,13,24,0) 60%)}
+.hero-in{position:relative;width:100%;max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:120px 44px;display:grid;gap:18px;color:#EEF4FA}
+.hero .lock{gap:18px}
+.hero .lock svg{height:76px;width:auto}
+.hero .wm{font-size:clamp(40px,7vw,64px)}
+.hero .slogan{font:500 clamp(17px,2.2vw,21px)/1.4 var(--f-titulo);max-width:36ch;color:rgba(238,244,250,.9)}
+.hero .slogan span{display:block;color:rgba(238,244,250,.6);font-size:.85em;margin-top:4px}
+.meta{font:500 12px var(--f-texto);letter-spacing:.12em;text-transform:uppercase;color:rgba(238,244,250,.55)}
+
+/* assinatura */
+.lock{display:flex;align-items:center;gap:12px}
+.wm{font:italic 800 32px/1 var(--f-titulo);letter-spacing:-.035em;white-space:nowrap}
+.wm b{font-weight:800;background:linear-gradient(90deg,#1FE0BE,#46C2FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sobre-claro .wm{color:#0A1B2E}
+.sobre-claro .wm b{background-image:linear-gradient(90deg,#0B9C86,#1C7FD1)}
+.sobre-escuro .wm{color:#EEF4FA}
+
+.marcas{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.prova{border-radius:22px;padding:36px 28px;display:grid;place-items:center;gap:22px;min-height:220px;border:1px solid var(--borda)}
+.sobre-escuro{background:radial-gradient(120% 120% at 20% 0%,#10263D,#050D18 70%)}
+.sobre-claro{background:#F6F2EB}
+.prova .lock svg{height:52px;width:auto}
+.empilhada{display:grid;justify-items:center;gap:8px}
+.empilhada svg{height:64px;width:auto}
+.icones{display:flex;align-items:flex-end;gap:22px;flex-wrap:wrap;justify-content:center}
+.app-ic{width:92px;height:92px;border-radius:22px;display:grid;place-items:center;background:radial-gradient(120% 100% at 30% 0%,#164369,#06111F 72%);box-shadow:0 12px 30px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08)}
+.app-ic svg{width:70px;height:auto}
+.app-ic.p{width:48px;height:48px;border-radius:12px}.app-ic.p svg{width:36px}
+.app-ic.pp{width:28px;height:28px;border-radius:7px}.app-ic.pp svg{width:22px}
+.legenda{font-size:13px;color:var(--texto-3)}
+.regras{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.regra{display:grid;gap:6px}
+.regra p{color:var(--texto-2);font-size:14px}
+.regra .x{color:var(--coral)} .regra .ok{color:var(--lagoa)}
+
+/* paleta */
+.amostras{grid-template-columns:repeat(auto-fill,minmax(min(100%,160px),1fr))}
+.am{border-radius:18px;overflow:hidden;border:1px solid var(--borda);background:var(--sup)}
+.am i{display:block;height:84px}
+.am div{padding:12px 14px;display:grid;gap:2px}
+.am b{font:700 14px var(--f-titulo)}
+.am span{font-size:12px;color:var(--texto-3)}
+.faixa{display:flex;flex-wrap:wrap;gap:10px}
+.pil{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:var(--sup);border:1px solid var(--borda);font-size:13px}
+.pil i{width:14px;height:14px;border-radius:50%}
+
+/* tipografia */
+.tipos{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.esp{font-family:var(--f-titulo);font-size:64px;font-weight:800;line-height:1;letter-spacing:-.04em}
+.esp.t{font-family:var(--f-texto);font-weight:500;letter-spacing:-.02em}
+.escala{display:grid;gap:14px;margin-top:8px}
+.escala div{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:baseline;border-top:1px solid var(--borda);padding-top:12px;min-width:0}
+.escala small{color:var(--texto-3);font:500 12px var(--f-texto)}
+
+/* telas */
+.telas{display:flex;flex-wrap:wrap;gap:40px;justify-content:center;align-items:flex-start}
+.tela-col{display:grid;gap:14px;justify-items:center;max-width:100%}
+.tela-col p{font-size:13px;color:var(--texto-3);text-align:center;max-width:34ch}
+.cel{width:330px;max-width:100%;border-radius:46px;padding:10px;background:linear-gradient(160deg,#2A3646,#0B111A);box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.app{--a-fundo:#050D18;--a-sup:rgba(16,38,61,.62);--a-sup-solida:#0E2236;--a-borda:rgba(255,255,255,.09);--a-texto:#EEF4FA;--a-texto-2:#A9BCCF;--a-texto-3:#71869D;--a-pri:#1FE0BE;--a-sec:#46C2FF;--a-coral:#FF7A59;--a-baixa:#3DDC97;--a-media:#FFC542;--a-alta:#FF6B6B;--a-sombra:0 10px 30px rgba(0,0,0,.35);
+  border-radius:37px;overflow:hidden;background:var(--a-fundo);color:var(--a-texto);font:14px/1.4 var(--f-texto);position:relative;height:700px;display:flex;flex-direction:column}
+.app.claro{--a-fundo:#F6F2EB;--a-sup:rgba(255,255,255,.86);--a-sup-solida:#FFFFFF;--a-borda:rgba(10,27,46,.09);--a-texto:#0A1B2E;--a-texto-2:#3F5368;--a-texto-3:#66798C;--a-pri:#0B9C86;--a-sec:#1C7FD1;--a-coral:#E85D3A;--a-baixa:#12A26B;--a-media:#B97F00;--a-alta:#D94848;--a-sombra:0 8px 24px rgba(10,27,46,.10)}
+.rolagem{flex:1;overflow:hidden;position:relative}
+.topo{position:relative;height:215px}
+.topo svg.cena{position:absolute;inset:0;width:100%;height:100%}
+.topo::after{content:"";position:absolute;inset:auto 0 0;height:56px;background:linear-gradient(transparent,var(--a-fundo))}
+.barra-st{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:14px 26px 0;font:600 13px var(--f-texto);color:#fff;z-index:2}
+.cab{position:absolute;top:44px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center;z-index:2;color:#fff}
+.cab .lock svg{height:24px;width:auto}
+.cab .wm{font-size:19px}
+.cab .wm{color:#fff}
+.btn-r{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(5,13,24,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);position:relative}
+.btn-r svg{width:19px;height:19px}
+.btn-r .pt{position:absolute;top:8px;right:9px;width:7px;height:7px;border-radius:50%;background:#FF7A59;box-shadow:0 0 0 2px rgba(5,13,24,.6)}
+.idioma{font:700 11px var(--f-texto);letter-spacing:.06em;padding:0 10px;height:30px;border-radius:999px;display:flex;align-items:center;gap:6px;background:rgba(5,13,24,.35);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(10px)}
+.idioma b{color:#1FE0BE}
+.ola{position:absolute;left:20px;right:20px;bottom:40px;z-index:2;color:#fff;text-shadow:0 1px 12px rgba(5,13,24,.55)}
+.ola h1{font:800 26px/1.1 var(--f-titulo);letter-spacing:-.03em}
+.ola p{font-size:13px;color:rgba(255,255,255,.78);margin-top:4px}
+.conteudo{padding:0 16px 16px;display:grid;gap:12px;margin-top:-6px;position:relative;z-index:3}
+.vidro{background:var(--a-sup);border:1px solid var(--a-borda);border-radius:20px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--a-sombra)}
+.clima{padding:14px 16px;display:grid;gap:10px}
+.clima .lin{display:flex;align-items:flex-end;gap:12px}
+.clima .t{font:700 44px/1 var(--f-titulo);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.clima .t sup{font-size:18px;vertical-align:top;margin-left:2px}
+.clima .c{font-size:12px;color:var(--a-texto-2)}
+.clima ul{list-style:none;margin:0;padding:10px 0 0;border-top:1px solid var(--a-borda);display:grid;grid-template-columns:1fr 1fr;gap:7px 10px;font-size:12px;color:var(--a-texto-2)}
+.clima li{display:flex;align-items:center;gap:6px}
+.clima li b{color:var(--a-texto);font-weight:600}
+.clima li svg{width:14px;height:14px;color:var(--a-pri);flex:none}
+.chips{display:flex;gap:8px;overflow:hidden}
+.chip{flex:none;height:34px;padding:0 14px;border-radius:999px;display:flex;align-items:center;gap:7px;font:600 12.5px var(--f-texto);border:1px solid var(--a-borda);background:var(--a-sup);color:var(--a-texto-2)}
+.chip.on{background:var(--a-pri);color:#04201B;border-color:transparent}
+.app.claro .chip.on{color:#fff}
+.chip i{width:7px;height:7px;border-radius:50%;background:var(--a-alta)}
+.aviso>div,.av-v>div,.praia>div{min-width:0}
+.aviso{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:12px 14px;border-radius:18px;background:color-mix(in srgb,var(--a-media) 14%,var(--a-sup-solida));border:1px solid color-mix(in srgb,var(--a-media) 40%,transparent)}
+.aviso .ic{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--a-media) 24%,transparent);color:var(--a-media)}
+.aviso .ic svg{width:18px;height:18px}
+.aviso b{font:700 13.5px/1.25 var(--f-titulo);display:block}
+.aviso span{font-size:11.5px;color:var(--a-texto-2)}
+.acoes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.acao{display:grid;justify-items:center;gap:7px;padding:12px 4px 10px;border-radius:18px;text-align:center;font:600 10.5px/1.15 var(--f-texto);color:var(--a-texto)}
+.acao span.ic{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:color-mix(in srgb,var(--a-pri) 14%,transparent);color:var(--a-pri)}
+.acao svg{width:21px;height:21px}
+.lista-cab{display:flex;justify-content:space-between;align-items:baseline;margin-top:4px}
+.lista-cab h3{font-size:16px}
+.lista-cab a{font-size:12px;color:var(--a-pri);font-weight:600;text-decoration:none}
+.praia{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;padding:10px 12px}
+.praia .mini{width:44px;height:44px;border-radius:12px;overflow:hidden}
+.praia .mini svg{width:100%;height:100%;display:block}
+.praia b{font:700 13.5px var(--f-titulo);display:block}
+.praia small{font-size:11.5px;color:var(--a-texto-3)}
+.lot{font:700 11px var(--f-texto);padding:5px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px}
+.lot svg{width:12px;height:12px}
+.lot.baixa{color:var(--a-baixa);background:color-mix(in srgb,var(--a-baixa) 15%,transparent)}
+.lot.media{color:var(--a-media);background:color-mix(in srgb,var(--a-media) 16%,transparent)}
+.lot.alta{color:var(--a-alta);background:color-mix(in srgb,var(--a-alta) 15%,transparent)}
+.est{font-size:10.5px;color:var(--a-texto-3);text-align:right;margin-top:2px}
+.abas{height:74px;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:0 6px 10px;background:color-mix(in srgb,var(--a-sup-solida) 92%,transparent);border-top:1px solid var(--a-borda);backdrop-filter:blur(16px)}
+.aba{display:grid;justify-items:center;gap:4px;font:600 10.5px var(--f-texto);color:var(--a-texto-3)}
+.aba svg{width:22px;height:22px}
+.aba.on{color:var(--a-pri)}
+
+/* componentes */
+.comps{grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))}
+.demo{display:grid;gap:14px;align-content:start}
+.demo .app{height:auto;border-radius:22px;padding:18px;display:grid;gap:12px;border:1px solid var(--a-borda)}
+.botoes{display:flex;gap:10px;flex-wrap:wrap}
+.btn{height:48px;padding:0 20px;border-radius:14px;font:700 14px var(--f-titulo);display:inline-flex;align-items:center;gap:8px;border:1px solid transparent}
+.btn.pri{background:linear-gradient(90deg,var(--a-pri),var(--a-sec));color:#04201B}
+.app.claro .btn.pri{color:#fff}
+.btn.sec{background:var(--a-sup);border-color:var(--a-borda);color:var(--a-texto)}
+.av-v{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:12px 14px;border-radius:18px;background:color-mix(in srgb,var(--a-alta) 14%,var(--a-sup-solida));border:1px solid color-mix(in srgb,var(--a-alta) 45%,transparent)}
+.av-v .ic{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--a-alta) 24%,transparent);color:var(--a-alta)}
+.av-v .ic svg{width:18px;height:18px}
+.av-v b{font:700 13.5px/1.25 var(--f-titulo);display:block}
+.av-v span{font-size:11.5px;color:var(--a-texto-2)}
+.fonte{display:inline-flex;gap:6px;align-items:center;font-size:11px;color:var(--a-texto-3)}
+.fonte i{width:6px;height:6px;border-radius:50%;background:var(--a-baixa)}
+
+/* princípios */
+.princ{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.pr{display:grid;gap:8px}
+.pr h3{display:flex;gap:10px;align-items:center}
+.pr h3 svg{width:20px;height:20px;color:var(--lagoa);flex:none}
+.pr p{color:var(--texto-2);font-size:14px}
+:focus-visible{outline:2px solid var(--lagoa);outline-offset:3px}
+@media (prefers-reduced-motion:no-preference){.cel{transition:transform .5s cubic-bezier(.2,.8,.2,1)}.cel:hover{transform:translateY(-4px)}}
+@media (max-width:420px){.esp{font-size:48px}.escala div{grid-template-columns:72px 1fr}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-traco" x1="8" y1="0" x2="122" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1FE0BE"/><stop offset="1" stop-color="#46C2FF"/></linearGradient>
+    <linearGradient id="g-traco-c" x1="8" y1="0" x2="122" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#0B9C86"/><stop offset="1" stop-color="#1C7FD1"/></linearGradient>
+    <linearGradient id="g-sol" x1="0" y1="9" x2="0" y2="23" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFD166"/><stop offset="1" stop-color="#FF7A59"/></linearGradient>
+    <linearGradient id="g-ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#091530"/><stop offset=".42" stop-color="#1B3358"/><stop offset=".7" stop-color="#7C5068"/><stop offset=".86" stop-color="#E9925E"/><stop offset="1" stop-color="#FFCB8E"/></linearGradient>
+    <linearGradient id="g-mar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A4466"/><stop offset=".35" stop-color="#11243F"/><stop offset="1" stop-color="#050D18"/></linearGradient>
+    <radialGradient id="g-brilho" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFE2B0" stop-opacity=".75"/><stop offset="1" stop-color="#FFB070" stop-opacity="0"/></radialGradient>
+    <linearGradient id="g-dia" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5CB8E6"/><stop offset=".6" stop-color="#A9DDF2"/><stop offset="1" stop-color="#E9F6FB"/></linearGradient>
+    <linearGradient id="g-agua" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1FB8C9"/><stop offset="1" stop-color="#0B6E8F"/></linearGradient>
+    <symbol id="marca" viewBox="0 0 128 72">
+      <circle cx="100" cy="16" r="5.5" fill="url(#g-sol)"/>
+      <path d="M8 52 C24 52 33 22 46 13 C53 8 58 25 65 30 C70 26 75 20 82 21 C92 23 98 46 110 48 C116 49 120 46 122 43" fill="none" stroke="url(#g-traco)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M24 63 C38 59 52 66 66 63 C80 60 94 59 108 63" fill="none" stroke="url(#g-traco)" stroke-width="3.5" stroke-linecap="round" opacity=".55"/>
+    </symbol>
+    <symbol id="marca-c" viewBox="0 0 128 72">
+      <circle cx="100" cy="16" r="5.5" fill="url(#g-sol)"/>
+      <path d="M8 52 C24 52 33 22 46 13 C53 8 58 25 65 30 C70 26 75 20 82 21 C92 23 98 46 110 48 C116 49 120 46 122 43" fill="none" stroke="url(#g-traco-c)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M24 63 C38 59 52 66 66 63 C80 60 94 59 108 63" fill="none" stroke="url(#g-traco-c)" stroke-width="3.5" stroke-linecap="round" opacity=".55"/>
+    </symbol>
+    <symbol id="cena" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+      <rect width="400" height="160" fill="url(#g-ceu)"/>
+      <circle cx="286" cy="140" r="46" fill="url(#g-brilho)"/>
+      <circle cx="286" cy="141" r="15" fill="#FFE1AE"/>
+      <path d="M0 152 C40 136 72 132 104 142 C132 150 156 137 192 138 C230 139 256 150 400 147 V162 H0Z" fill="#33476A" opacity=".85"/>
+      <path d="M300 162 C322 146 352 134 400 136 V166 H300Z" fill="#132842"/>
+      <path d="M0 166 C26 128 56 102 88 108 C116 113 132 140 166 152 C186 159 198 162 214 166Z" fill="#0B1A2F"/>
+      <rect y="160" width="400" height="90" fill="url(#g-mar)"/>
+      <g fill="#FFD9A0"><rect x="262" y="166" width="48" height="2" rx="1" opacity=".55"/><rect x="270" y="173" width="32" height="2" rx="1" opacity=".42"/><rect x="276" y="181" width="22" height="2" rx="1" opacity=".3"/><rect x="281" y="190" width="12" height="2" rx="1" opacity=".2"/></g>
+    </symbol>
+    <symbol id="praia-a" viewBox="0 0 44 44" preserveAspectRatio="xMidYMid slice"><rect width="44" height="26" fill="url(#g-dia)"/><path d="M0 24 C10 14 18 12 26 18 C32 22 38 20 44 16 V28 H0Z" fill="#2F7A5B"/><rect y="26" width="44" height="10" fill="url(#g-agua)"/><path d="M0 34 C14 31 30 33 44 31 V44 H0Z" fill="#EBDDC4"/></symbol>
+    <symbol id="praia-b" viewBox="0 0 44 44" preserveAspectRatio="xMidYMid slice"><rect width="44" height="22" fill="url(#g-dia)"/><rect y="22" width="44" height="12" fill="url(#g-agua)"/><path d="M0 32 C12 29 28 31 44 28 V44 H0Z" fill="#F0E4CC"/><path d="M30 22 C34 15 40 14 44 17 V22Z" fill="#3B7E62"/></symbol>
+    <symbol id="praia-c" viewBox="0 0 44 44" preserveAspectRatio="xMidYMid slice"><rect width="44" height="24" fill="url(#g-dia)"/><path d="M0 24 C6 18 12 18 18 22 C26 12 34 12 44 22 V26 H0Z" fill="#285F49"/><rect y="25" width="44" height="9" fill="url(#g-agua)"/><path d="M0 33 C16 30 26 34 44 32 V44 H0Z" fill="#E7D7BA"/></symbol>
+    <symbol id="i-sol" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-vento" viewBox="0 0 24 24"><path d="M12.8 19.6A2 2 0 1 0 14 16H2M17.5 8a2.5 2.5 0 1 1 2 4H2M9.8 4.4A2 2 0 1 1 11 8H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-gota" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-termo" viewBox="0 0 24 24"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-guarda" viewBox="0 0 24 24"><path d="M22 12a10.06 10.06 1 0 0-20 0Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 12v8a2 2 0 0 0 4 0M12 2v1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-carro" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2M9 17h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="17" r="2" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-rota" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="18" cy="5" r="3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-chuva" viewBox="0 0 24 24"><path d="M4 14.9A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.24M16 14v6M8 14v6M12 16v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-alerta" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 9v4M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-sino" viewBox="0 0 24 24"><path d="M10.27 21a2 2 0 0 0 3.46 0M3.26 15.33A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.67C19.41 13.96 18 12.5 18 8A6 6 0 0 0 6 8c0 4.5-1.41 5.96-2.74 7.33" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-casa" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8M3 10a2 2 0 0 1 .71-1.53l7-6a2 2 0 0 1 2.58 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-mapa" viewBox="0 0 24 24"><path d="M14.1 5.55a2 2 0 0 0 1.8 0l3.65-1.83A1 1 0 0 1 21 4.62v12.76a1 1 0 0 1-.55.9l-4.55 2.27a2 2 0 0 1-1.8 0l-4.2-2.1a2 2 0 0 0-1.8 0l-3.65 1.83A1 1 0 0 1 3 19.38V6.62a1 1 0 0 1 .55-.9L8.1 3.45a2 2 0 0 1 1.8 0zM15 5.76v15M9 3.24v15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pessoa" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 21a8 8 0 0 0-16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-gente" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-olho" viewBox="0 0 24 24"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-mao" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-relogio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-nuvem-off" viewBox="0 0 24 24"><path d="M17.5 21H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 13v4M10 15h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-idioma" viewBox="0 0 24 24"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<header class="hero">
+  <svg aria-hidden="true"><use href="#cena"/></svg>
+  <div class="hero-in">
+    <div class="meta">Identidade visual · versão 1 · 22/11/2026</div>
+    <div class="lock sobre-escuro" style="background:none">
+      <svg viewBox="0 0 128 72" aria-label="Símbolo SC Explorer"><use href="#marca"/></svg>
+      <div class="wm"><b>SC</b> Explorer</div>
+    </div>
+    <p class="slogan">Tu guía inteligente del litoral de Florianópolis.<span>Seu guia inteligente do litoral de Florianópolis.</span></p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="sec" aria-labelledby="s-marca">
+    <div class="sec-cab">
+      <span class="rotulo">Marca</span>
+      <h2 id="s-marca">A ilha num traço só</h2>
+      <p>Os dois morros descem e viram onda; embaixo, a linha do mar; o sol de fim de tarde fecha a cena. O nome vem em itálico pesado, com "SC" no degradê da Lagoa ao céu: transmite movimento, como quem está indo para a praia.</p>
+    </div>
+    <div class="grade marcas">
+      <div class="prova sobre-escuro">
+        <div class="lock"><svg viewBox="0 0 128 72" aria-hidden="true"><use href="#marca"/></svg><div class="wm"><b>SC</b> Explorer</div></div>
+        <span class="legenda" style="color:#71869D">Horizontal · fundo escuro (padrão)</span>
+      </div>
+      <div class="prova sobre-claro">
+        <div class="lock"><svg viewBox="0 0 128 72" aria-hidden="true"><use href="#marca-c"/></svg><div class="wm"><b>SC</b> Explorer</div></div>
+        <span class="legenda" style="color:#66798C">Horizontal · fundo claro (traço mais escuro, mesmo desenho)</span>
+      </div>
+      <div class="prova sobre-escuro">
+        <div class="empilhada"><svg viewBox="0 0 128 72" aria-hidden="true"><use href="#marca"/></svg><div class="wm" style="font-size:30px"><b>SC</b> Explorer</div></div>
+        <span class="legenda" style="color:#71869D">Vertical · abertura do app, folha A6, redes</span>
+      </div>
+      <div class="prova sobre-escuro">
+        <div class="icones">
+          <div class="app-ic"><svg viewBox="0 0 128 72" aria-hidden="true"><use href="#marca"/></svg></div>
+          <div class="app-ic p"><svg viewBox="0 0 128 72" aria-hidden="true"><use href="#marca"/></svg></div>
+          <div class="app-ic pp"><svg viewBox="0 0 128 72" aria-hidden="true"><use href="#marca"/></svg></div>
+        </div>
+        <span class="legenda" style="color:#71869D">Ícone do app na tela de início · 92 · 48 · 28 px</span>
+      </div>
+    </div>
+    <div class="grade regras">
+      <div class="painel regra"><h3><span class="ok">✓</span> Área de respiro</h3><p>Ao redor da marca, deixe livre no mínimo a altura do "S". Nada encosta nela.</p></div>
+      <div class="painel regra"><h3><span class="ok">✓</span> Tamanho mínimo</h3><p>Símbolo com 24 px; assinatura horizontal com 120 px de largura. Abaixo disso, só o ícone.</p></div>
+      <div class="painel regra"><h3><span class="x">✕</span> Não fazer</h3><p>Não esticar, não trocar as cores do degradê, não pôr sombra, não usar o traço claro sobre fundo claro.</p></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="s-cores">
+    <div class="sec-cab">
+      <span class="rotulo">Paleta</span>
+      <h2 id="s-cores">As cores do fim de tarde na Ilha</h2>
+      <p>O fundo é o mar à noite. A ação principal é o turquesa da Lagoa da Conceição; o coral do pôr do sol marca só o que é "agora". As cores de estado nunca se misturam com a cor da marca.</p>
+    </div>
+    <div class="grade amostras">
+      <div class="am"><i style="background:#050D18"></i><div><b>Abismo</b><span class="hex">#050D18</span><span>Fundo do app</span></div></div>
+      <div class="am"><i style="background:#0A1A2C"></i><div><b>Mar à noite</b><span class="hex">#0A1A2C</span><span>Superfícies</span></div></div>
+      <div class="am"><i style="background:#10263D"></i><div><b>Mar fundo</b><span class="hex">#10263D</span><span>Cartões e vidro</span></div></div>
+      <div class="am"><i style="background:#1FE0BE"></i><div><b>Lagoa</b><span class="hex">#1FE0BE</span><span>Ação principal</span></div></div>
+      <div class="am"><i style="background:#46C2FF"></i><div><b>Céu</b><span class="hex">#46C2FF</span><span>Degradê e informação</span></div></div>
+      <div class="am"><i style="background:#FF7A59"></i><div><b>Pôr do sol</b><span class="hex">#FF7A59</span><span>"Agora", novidade</span></div></div>
+      <div class="am"><i style="background:#FFD166"></i><div><b>Sol</b><span class="hex">#FFD166</span><span>Sol, UV, calor</span></div></div>
+      <div class="am"><i style="background:#F6F2EB"></i><div><b>Areia</b><span class="hex">#F6F2EB</span><span>Fundo do modo Sol forte</span></div></div>
+    </div>
+    <div class="painel" style="display:grid;gap:14px">
+      <h3>Estados: lotação, trânsito e avisos</h3>
+      <div class="faixa">
+        <span class="pil"><i style="background:#3DDC97"></i>Tranquila · livre <code>#3DDC97</code></span>
+        <span class="pil"><i style="background:#FFC542"></i>Média · moderado · aviso laranja <code>#FFC542</code></span>
+        <span class="pil"><i style="background:#FF6B6B"></i>Cheia · pesado · aviso vermelho <code>#FF6B6B</code></span>
+        <span class="pil"><i style="background:#7C8DA3"></i>Sem dado <code>#7C8DA3</code></span>
+      </div>
+      <h3 style="margin-top:6px">As 5 regiões</h3>
+      <div class="faixa">
+        <span class="pil"><i style="background:#FF8A4C"></i>Norte</span>
+        <span class="pil"><i style="background:#1FE0BE"></i>Leste</span>
+        <span class="pil"><i style="background:#5BD47A"></i>Sul</span>
+        <span class="pil"><i style="background:#5B8CFF"></i>Centro</span>
+        <span class="pil"><i style="background:#A07CFF"></i>Continente</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="s-tipo">
+    <div class="sec-cab">
+      <span class="rotulo">Tipografia</span>
+      <h2 id="s-tipo">Duas famílias, uma escala</h2>
+      <p>Plus Jakarta Sans nos títulos e no nome; Inter no texto e em todo número que muda (temperatura, minutos, porcentagem), com algarismos de largura fixa para não "pular" quando atualiza. As duas são livres (licença OFL) e ficam dentro do app, sem depender de internet.</p>
+    </div>
+    <div class="grade tipos">
+      <div class="painel">
+        <div class="esp">Aa</div>
+        <h3 style="margin-top:10px">Plus Jakarta Sans</h3>
+        <p class="legenda">Títulos · 700 e 800 · nome em 800 itálico</p>
+        <div class="escala">
+          <div><small>Título 1 · 32</small><span style="font:800 32px/1.1 var(--f-titulo);letter-spacing:-.03em">Playas ahora</span></div>
+          <div><small>Título 2 · 22</small><span style="font:700 22px/1.2 var(--f-titulo);letter-spacing:-.02em">Tránsito en la SC-401</span></div>
+          <div><small>Título 3 · 17</small><span style="font:700 17px/1.3 var(--f-titulo)">Itinerario de lluvia</span></div>
+        </div>
+      </div>
+      <div class="painel">
+        <div class="esp t">27°</div>
+        <h3 style="margin-top:10px">Inter</h3>
+        <p class="legenda">Texto, rótulos e números · 400, 500 e 600</p>
+        <div class="escala">
+          <div><small>Texto · 15</small><span>La marea baja a las 16:40; buen momento para caminar hasta la isla.</span></div>
+          <div><small>Apoio · 13</small><span style="font-size:13px;color:var(--texto-2)">Fuente: TomTom · actualizado 15:32</span></div>
+          <div><small>Rótulo · 11</small><span style="font:600 11px var(--f-texto);letter-spacing:.14em;text-transform:uppercase">Estimación</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="s-telas">
+    <div class="sec-cab">
+      <span class="rotulo">Telas</span>
+      <h2 id="s-telas">Tela inicial, nos dois modos</h2>
+      <p>O app abre em espanhol, com o "vos" de Buenos Aires, e troca para português no botão ES/PT. O modo escuro é o padrão; o modo Sol forte é para ler na areia, com sol a pino, e liga sozinho quando o celular está no tema claro.</p>
+    </div>
+    <div class="telas" id="telas"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="s-comp">
+    <div class="sec-cab">
+      <span class="rotulo">Componentes</span>
+      <h2 id="s-comp">As peças que se repetem</h2>
+      <p>Todo dado mostra de onde veio e a que horas. Lotação aparece sempre como estimativa, nunca como "ao vivo", porque não existe fonte oficial de lotação de praia.</p>
+    </div>
+    <div class="grade comps" id="comps"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="s-ux">
+    <div class="sec-cab">
+      <span class="rotulo">Experiência</span>
+      <h2 id="s-ux">Seis regras de uso</h2>
+      <p>Saem do que já aprendemos com o Floripa Explorer e de como o turista usa o celular na praia.</p>
+    </div>
+    <div class="grade princ">
+      <div class="painel pr"><h3><svg aria-hidden="true"><use href="#i-mao"/></svg>Uma mão, um polegar</h3><p>Tudo o que importa fica na metade de baixo da tela. Área de toque mínima de 48 px, abas embaixo, nada essencial no canto de cima.</p></div>
+      <div class="painel pr"><h3><svg aria-hidden="true"><use href="#i-olho"/></svg>Em 3 segundos</h3><p>Ao abrir: o tempo agora, o aviso mais grave da região e a lotação das praias. O resto fica a um toque.</p></div>
+      <div class="painel pr"><h3><svg aria-hidden="true"><use href="#i-relogio"/></svg>Dado com fonte e hora</h3><p>Cada número diz de onde veio e quando foi lido. Quando uma fonte cai, aparece o último dado com o selo "dados guardados".</p></div>
+      <div class="painel pr"><h3><svg aria-hidden="true"><use href="#i-sol"/></svg>Legível ao sol</h3><p>Contraste mínimo de 4,5:1 nos dois modos. O modo Sol forte usa fundo areia e cores mais escuras para não sumir na luz.</p></div>
+      <div class="painel pr"><h3><svg aria-hidden="true"><use href="#i-nuvem-off"/></svg>Funciona sem sinal</h3><p>Na praia o sinal falha. A última leitura e os roteiros salvos abrem sem internet.</p></div>
+      <div class="painel pr"><h3><svg aria-hidden="true"><use href="#i-idioma"/></svg>Espanhol primeiro</h3><p>Textos escritos para argentino e chileno, não traduzidos ao pé da letra. Medidas em km/h, °C e horário de 24 h.</p></div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const ic=(id,cls='')=>`<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><use href="#${id}"/></svg>`;
+function tela(claro){
+  return `<div class="cel"><div class="app${claro?' claro':''}" role="img" aria-label="Tela inicial do SC Explorer, modo ${claro?'Sol forte':'escuro'}">
+  <div class="rolagem">
+    <div class="topo">
+      <svg class="cena" aria-hidden="true"><use href="#cena"/></svg>
+      <div class="barra-st"><span>15:40</span><span>5G ▮▮▮</span></div>
+      <div class="cab">
+        <div class="lock"><svg viewBox="0 0 128 72" aria-hidden="true"><use href="#marca"/></svg><div class="wm"><b>SC</b> Explorer</div></div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="idioma"><b>ES</b>PT</span><span class="btn-r">${ic('i-sino')}<i class="pt"></i></span></div>
+      </div>
+      <div class="ola"><h1>Buenas tardes</h1><p>Florianópolis · sábado 22 de noviembre</p></div>
+    </div>
+    <div class="conteudo">
+      <div class="vidro clima">
+        <div class="lin"><div class="t">27<sup>°</sup></div><div class="c">Parcialmente nublado<br>Máx. 29° · mín. 21°</div></div>
+        <ul>
+          <li>${ic('i-termo')}Sensación <b>29°</b></li>
+          <li>${ic('i-sol')}UV <b>9</b></li>
+          <li>${ic('i-vento')}Viento <b>16 NE</b></li>
+          <li>${ic('i-gota')}Lluvia <b>10%</b></li>
+        </ul>
+      </div>
+      <div class="chips"><span class="chip on">Norte<i></i></span><span class="chip">Este</span><span class="chip">Sur</span><span class="chip">Centro</span><span class="chip">Continente</span></div>
+      <div class="aviso"><span class="ic">${ic('i-carro')}</span><div><b>Tránsito pesado en la SC-401, hacia el norte</b><span>+18 min hasta Jurerê · TomTom, 15:32</span></div></div>
+      <div class="acoes">
+        <div class="acao vidro"><span class="ic">${ic('i-guarda')}</span>Playas</div>
+        <div class="acao vidro"><span class="ic">${ic('i-carro')}</span>Tránsito</div>
+        <div class="acao vidro"><span class="ic">${ic('i-rota')}</span>Itinerarios</div>
+        <div class="acao vidro"><span class="ic">${ic('i-chuva')}</span>Día de lluvia</div>
+      </div>
+      <div class="lista-cab"><h3>Playas del norte</h3><a href="#s-telas">Ver todas</a></div>
+      <div class="vidro" style="display:grid">
+        <div class="praia"><span class="mini"><svg aria-hidden="true"><use href="#praia-a"/></svg></span><div><b>Jurerê Internacional</b><small>Agua apta · olas 0,5 m</small></div><div><span class="lot alta">${ic('i-gente')}Llena</span><div class="est">estimación</div></div></div>
+        <div class="praia" style="border-top:1px solid var(--a-borda)"><span class="mini"><svg aria-hidden="true"><use href="#praia-b"/></svg></span><div><b>Daniela</b><small>Agua apta · mar calmo</small></div><div><span class="lot baixa">${ic('i-gente')}Tranquila</span><div class="est">estimación</div></div></div>
+      </div>
+    </div>
+  </div>
+  <nav class="abas" aria-label="Abas">
+    <span class="aba on">${ic('i-casa')}Inicio</span><span class="aba">${ic('i-mapa')}Mapa</span><span class="aba">${ic('i-rota')}Itinerarios</span><span class="aba">${ic('i-sino')}Avisos</span><span class="aba">${ic('i-pessoa')}Cuenta</span>
+  </nav></div></div>`;
+}
+document.getElementById('telas').innerHTML=
+ `<div class="tela-col">${tela(false)}<p><b>Escuro (padrão).</b> Vidro sobre o mar à noite, como nas referências.</p></div>`+
+ `<div class="tela-col">${tela(true)}<p><b>Sol forte.</b> Mesmo desenho, contraste para ler ao meio-dia na areia.</p></div>`;
+
+function comps(claro){
+  return `<div class="demo"><div class="app${claro?' claro':''}">
+    <div class="botoes"><span class="btn pri">Ver itinerario</span><span class="btn sec">Guardar</span></div>
+    <div class="av-v"><span class="ic">${ic('i-alerta')}</span><div><b>Ventarrón: ráfagas de hasta 80 km/h</b><span>Evitá el mar abierto hasta las 21:00 · INMET, 14:10</span></div></div>
+    <div class="aviso"><span class="ic">${ic('i-sol')}</span><div><b>UV 11 entre las 11:00 y las 15:00</b><span>Protector cada 2 horas · CPTEC/INPE</span></div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="lot baixa">${ic('i-gente')}Tranquila</span><span class="lot media">${ic('i-gente')}Media</span><span class="lot alta">${ic('i-gente')}Llena</span></div>
+    <span class="fonte"><i></i>Datos de las 15:32 · próximos en 8 min</span>
+  </div><p class="legenda">${claro?'Sol forte':'Escuro'}: botões, avisos vermelho e laranja, lotação e selo de atualização.</p></div>`;
+}
+document.getElementById('comps').innerHTML=comps(false)+comps(true);
+</script>
