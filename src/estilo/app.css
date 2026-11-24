@@ -1,4 +1,4 @@
-/* SC Explorer — estilo do app. Tokens e componentes vêm da identidade v3 (brand/identidade.html).
+/* SC Explorer — estilo do app. Tokens e componentes vêm da identidade visual (identidade-visual/GUIA.html e cores/tokens.css).
    Tema escuro é o padrão; .app.claro é o "Sol forte". Áreas sobre foto usam .escuro-fixo. */
 :root {
   --f-titulo: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;

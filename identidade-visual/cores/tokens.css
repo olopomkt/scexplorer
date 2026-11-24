@@ -1,0 +1,91 @@
+/* SC Explorer — tokens da identidade visual (aprovada em 24/11/2026).
+   Fonte dos valores do app: src/estilo/app.css. Os nomes --a-* são os mesmos do app, para não haver dois vocabulários.
+   Tema escuro é o padrão; o claro ("Sol forte") é para usar na praia, sob sol. */
+
+:root {
+  /* ===== marca (logotipo, peças, redes) ===== */
+  --sce-lagoa: #1FE0BE;        /* degradê do "SC" e do símbolo, em fundo escuro */
+  --sce-ceu: #46C2FF;
+  --sce-sol: #FFD166;          /* só no sol do símbolo e em destaques pequenos */
+  --sce-coral: #FF7A59;
+  --sce-noite: #050D18;        /* fundo escuro */
+  --sce-lagoa-funda: #0B9C86;  /* degradê em fundo claro */
+  --sce-ceu-fundo: #1C7FD1;
+  --sce-azul-noite: #0A1B2E;   /* texto e versão de uma cor */
+  --sce-areia: #F3EFE7;        /* fundo claro */
+  --sce-degrade: linear-gradient(90deg, #1FE0BE, #46C2FF);
+  --sce-degrade-claro: linear-gradient(90deg, #0B9C86, #1C7FD1);
+  --sce-degrade-sol: linear-gradient(180deg, #FFD166, #FF7A59);
+  --sce-degrade-icone: linear-gradient(135deg, #7AF5DF, #1FE0BE 50%, #46C2FF);
+
+  /* ===== tipografia ===== */
+  --f-titulo: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif; /* nome e títulos: 700/800; nome em 800 itálico */
+  --f-texto: "Inter", ui-sans-serif, system-ui, sans-serif;              /* texto 400, rótulos 600 */
+
+  /* ===== forma ===== */
+  --raio-cartao: 18px;   /* cartões de vidro */
+  --raio-bloco: 12px;    /* blocos internos, botões quadrados */
+  --raio-pilula: 999px;  /* chips, botões redondos, etiquetas de lotação */
+  --desfoque-vidro: blur(18px) saturate(140%);
+  --traco-icone: 1.8;    /* ícones de interface: 24×24, traço redondo */
+}
+
+/* ===== app: tema escuro (padrão) ===== */
+:root, .tema-escuro {
+  --a-fundo: #050D18;
+  --a-vidro: rgba(13, 32, 52, .62);
+  --a-vidro-forte: rgba(13, 32, 52, .92);
+  --a-brilho: rgba(255, 255, 255, .06);
+  --a-realce: rgba(255, 255, 255, .07);
+  --a-sombra: 0 12px 30px rgba(0, 0, 0, .28);
+  --a-borda: rgba(255, 255, 255, .10);
+  --a-suave: rgba(255, 255, 255, .06);
+  --a-forte: #FFFFFF;
+  --a-texto: #E2EAF2;
+  --a-texto-2: #B3C4D6;
+  --a-texto-3: #8093A8;
+  --a-pri: #1FE0BE;
+  --a-sec: #46C2FF;
+  --a-coral: #FF6B57;
+  --a-baixa: #34D399;   /* lotação baixa · via livre */
+  --a-media: #FFC542;   /* lotação média · via lenta */
+  --a-alta: #FF5C5C;    /* lotação alta · via parada */
+  --a-sobre-pri: #03201C;
+  --a-lateral: #06111E;
+  --a-barra: rgba(7, 18, 31, .88);
+}
+
+/* ===== app: tema claro "Sol forte" ===== */
+.tema-claro {
+  --a-fundo: #F3EFE7;
+  --a-vidro: rgba(255, 255, 255, .78);
+  --a-vidro-forte: rgba(255, 255, 255, .95);
+  --a-brilho: rgba(255, 255, 255, .55);
+  --a-realce: rgba(255, 255, 255, .9);
+  --a-sombra: 0 8px 24px rgba(16, 38, 61, .10);
+  --a-borda: rgba(10, 27, 46, .10);
+  --a-suave: rgba(10, 27, 46, .06);
+  --a-forte: #0A1B2E;
+  --a-texto: #1E3247;
+  --a-texto-2: #43586D;
+  --a-texto-3: #5F7286;
+  --a-pri: #0A9A84;
+  --a-sec: #1C7FD1;
+  --a-coral: #E8553F;
+  --a-baixa: #0F9D6B;
+  --a-media: #B87A06;
+  --a-alta: #DC3B3B;
+  --a-sobre-pri: #FFFFFF;
+  --a-lateral: #FBF9F5;
+  --a-barra: rgba(255, 255, 255, .92);
+}
+
+/* Cartão de vidro, como no app */
+.vidro {
+  background: linear-gradient(180deg, var(--a-brilho), rgba(255, 255, 255, 0) 40%), var(--a-vidro);
+  border: 1px solid var(--a-borda);
+  border-radius: var(--raio-cartao);
+  backdrop-filter: var(--desfoque-vidro);
+  -webkit-backdrop-filter: var(--desfoque-vidro);
+  box-shadow: var(--a-sombra);
+}

@@ -1,0 +1,547 @@
+<meta charset="utf-8">
+<title>SC Explorer Identidade Visual</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: manual de marca em coluna única com índice no topo; cada exemplo num "palco" com o fundo em que deve ser usado. */
+:root{
+  --fundo:#F6F2EB; --sup:#FFFFFF; --sup-2:#EEF2F5; --borda:rgba(10,27,46,.11);
+  --texto:#0A1B2E; --texto-2:#3F5368; --texto-3:#5F7286; --destaque:#0B9C86; --erro:#C8402F;
+  --f-titulo:"Plus Jakarta Sans",ui-sans-serif,system-ui,sans-serif;
+  --f-texto:"Inter",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --ic-inv:none;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --fundo:#040B15; --sup:#0A1A2C; --sup-2:#10263D; --borda:rgba(255,255,255,.09);
+  --texto:#EEF4FA; --texto-2:#A9BCCF; --texto-3:#7D92A8; --destaque:#1FE0BE; --erro:#FF7A62; --ic-inv:invert(1) brightness(.92); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --fundo:#040B15; --sup:#0A1A2C; --sup-2:#10263D; --borda:rgba(255,255,255,.09);
+  --texto:#EEF4FA; --texto-2:#A9BCCF; --texto-3:#7D92A8; --destaque:#1FE0BE; --erro:#FF7A62; --ic-inv:invert(1) brightness(.92); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--fundo);color:var(--texto);font:15px/1.6 var(--f-texto);-webkit-font-smoothing:antialiased;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:36px 80px;display:grid;gap:72px}
+h1,h2,h3{font-family:var(--f-titulo);margin:0;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:clamp(24px,3vw,30px);font-weight:800}
+h3{font-size:15px;font-weight:700}
+p{margin:0}
+img{display:block;max-width:100%}
+a{color:var(--destaque)}
+code{font:500 12.5px var(--f-mono);color:var(--texto-2)}
+.rot{font:600 11px var(--f-texto);letter-spacing:.14em;text-transform:uppercase;color:var(--destaque)}
+.cab{display:grid;gap:10px;max-width:68ch}
+.cab p{color:var(--texto-2)}
+section{display:grid;gap:22px;scroll-margin-top:16px}
+.sub{display:grid;gap:12px}
+.sub>h3{color:var(--texto-2)}
+
+/* abertura e índice */
+.abre{display:grid;gap:26px}
+.abre .palco{min-height:260px}
+.abre .palco img{width:min(560px,82%)}
+.abre h1{font-size:clamp(30px,4.4vw,44px);font-weight:800;letter-spacing:-.035em}
+.meta{font:500 12px var(--f-texto);letter-spacing:.12em;text-transform:uppercase;color:var(--texto-3)}
+.indice{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.indice a{display:inline-block;padding:7px 14px;border-radius:999px;border:1px solid var(--borda);background:var(--sup);color:var(--texto);font:600 13px var(--f-texto);text-decoration:none}
+.indice a:hover{border-color:var(--destaque)}
+
+/* palcos: o fundo é parte da regra, por isso vale nos dois temas da página */
+.palco{border-radius:20px;border:1px solid var(--borda);display:grid;place-items:center;padding:34px 22px;min-height:190px;position:relative;overflow:hidden}
+.p-noite{background:radial-gradient(120% 120% at 20% 0%,#10263D,#050D18 70%)}
+.p-areia{background:#F3EFE7}
+.p-branco{background:#FFFFFF}
+.p-foto{background:#0b1622}
+.palco.p-foto>img.bg{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover}
+.p-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,13,24,.15),rgba(5,13,24,.55))}
+.p-foto>:not(.bg){position:relative;z-index:1}
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px}
+.versao{display:grid;gap:10px;min-width:0}
+.versao .palco img{width:min(360px,86%)}
+.versao .palco img.v{width:min(220px,62%)}
+.versao .palco img.s{width:min(150px,44%)}
+.versao .palco img.i{width:112px;border-radius:26px;box-shadow:0 14px 34px rgba(0,0,0,.35)}
+.legenda{display:grid;gap:2px}
+.legenda b{font:700 14px var(--f-titulo)}
+.legenda span{font-size:13px;color:var(--texto-2)}
+.legenda code{font-size:11.5px;color:var(--texto-3);overflow-wrap:anywhere}
+
+/* construção */
+.const{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:18px;align-items:start}
+.diagrama{background:radial-gradient(120% 120% at 20% 0%,#10263D,#050D18 70%);border-radius:20px;padding:22px;border:1px solid var(--borda)}
+.diagrama svg{width:100%;height:auto;display:block}
+.diagrama text{font:600 11px var(--f-texto);fill:#A9BCCF}
+.regras{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.regras li{background:var(--sup);border:1px solid var(--borda);border-radius:16px;padding:14px 16px;display:grid;gap:3px}
+.regras li b{font:700 14px var(--f-titulo)}
+.regras li span{font-size:13.5px;color:var(--texto-2)}
+.regras.duas{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+
+/* cores */
+.cores{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,170px),1fr));gap:12px}
+.cor{border-radius:16px;overflow:hidden;border:1px solid var(--borda);background:var(--sup)}
+.cor i{display:block;height:74px}
+.cor div{padding:10px 12px;display:grid;gap:1px}
+.cor b{font:700 13.5px var(--f-titulo)}
+.cor code{font-size:11.5px}
+.cor span{font-size:12px;color:var(--texto-3)}
+.temas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+.tema{border-radius:20px;border:1px solid var(--borda);padding:18px;display:grid;gap:12px;min-width:0}
+.tema.e{background:#050D18;color:#E2EAF2} .tema.c{background:#F3EFE7;color:#1E3247}
+.tema h3{font-size:14px}
+.fichas{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,118px),1fr));gap:8px}
+.ficha{display:grid;gap:2px;font-size:11.5px}
+.ficha i{display:block;height:40px;border-radius:10px;border:1px solid rgba(127,127,127,.25)}
+.ficha b{font:600 12px var(--f-texto)}
+.ficha code{font-size:11px;color:inherit;opacity:.7}
+.nota{font-size:13px;color:var(--texto-3);max-width:70ch}
+
+/* tipografia */
+.tipos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+.tipo{background:var(--sup);border:1px solid var(--borda);border-radius:20px;padding:22px;display:grid;gap:12px;min-width:0}
+.amostra-t{font:italic 800 clamp(34px,5vw,46px)/1.05 var(--f-titulo);letter-spacing:-.035em}
+.amostra-t b{background:linear-gradient(90deg,#0B9C86,#1C7FD1);-webkit-background-clip:text;background-clip:text;color:transparent}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .amostra-t b{background-image:linear-gradient(90deg,#1FE0BE,#46C2FF)}}
+:root[data-theme="dark"] .amostra-t b{background-image:linear-gradient(90deg,#1FE0BE,#46C2FF)}
+.amostra-x{font:400 17px/1.55 var(--f-texto);color:var(--texto-2)}
+.tipo dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;font-size:13px}
+.tipo dt{color:var(--texto-3)} .tipo dd{margin:0}
+.escala{background:var(--sup);border:1px solid var(--borda);border-radius:20px;padding:6px 22px;display:grid}
+.passo{display:grid;grid-template-columns:120px minmax(0,1fr);gap:14px;align-items:baseline;padding:12px 0;border-top:1px solid var(--borda)}
+.passo:first-child{border-top:0}
+.passo code{font-size:11.5px;color:var(--texto-3)}
+.passo p{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ícones */
+.icones{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px}
+.icone{background:var(--sup);border:1px solid var(--borda);border-radius:14px;padding:14px 6px 10px;display:grid;justify-items:center;gap:8px;min-width:0}
+.icone img{width:24px;height:24px;filter:var(--ic-inv)}
+.icone span{font:500 11px var(--f-texto);color:var(--texto-3);overflow-wrap:anywhere;text-align:center}
+.climas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+.climas .palco{display:flex;flex-wrap:wrap;gap:14px 18px;justify-content:center;min-height:0;padding:22px}
+.climas img{width:56px;height:56px}
+.grad-demo{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.grad-demo svg{width:34px;height:34px;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.p-noite .grad-demo svg{stroke:url(#g-ic)} .p-areia .grad-demo svg{stroke:url(#g-ic-c)}
+
+/* fotos */
+.fotos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:12px}
+.foto{display:grid;gap:6px;min-width:0}
+.foto img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;border:1px solid var(--borda)}
+.foto span{font-size:12.5px;color:var(--texto-2)}
+
+/* superfícies do app */
+.e-app{--a-fundo:#050D18;--a-vidro:rgba(13,32,52,.62);--a-brilho:rgba(255,255,255,.06);--a-borda:rgba(255,255,255,.10);--a-sombra:0 12px 30px rgba(0,0,0,.28);--a-forte:#FFFFFF;--a-texto:#E2EAF2;--a-texto-2:#B3C4D6;--a-pri:#1FE0BE;--a-sobre-pri:#03201C;--a-suave:rgba(255,255,255,.06);--a-baixa:#34D399;--a-media:#FFC542;--a-alta:#FF5C5C}
+.c-app{--a-fundo:#F3EFE7;--a-vidro:rgba(255,255,255,.78);--a-brilho:rgba(255,255,255,.55);--a-borda:rgba(10,27,46,.10);--a-sombra:0 8px 24px rgba(16,38,61,.10);--a-forte:#0A1B2E;--a-texto:#1E3247;--a-texto-2:#43586D;--a-pri:#0A9A84;--a-sobre-pri:#FFFFFF;--a-suave:rgba(10,27,46,.06);--a-baixa:#0F9D6B;--a-media:#B87A06;--a-alta:#DC3B3B}
+.sup-demo{border-radius:20px;border:1px solid var(--borda);padding:22px;display:grid;gap:14px;background:var(--a-fundo);color:var(--a-texto);position:relative;overflow:hidden;min-width:0}
+.sup-demo>.fundo{position:absolute;inset:0;width:100%;height:46%;object-fit:cover;max-width:none}
+.sup-demo>.fundo+.vela{position:absolute;inset:0;height:46%;background:linear-gradient(180deg,rgba(5,13,24,.1),var(--a-fundo))}
+.sup-demo>:not(.fundo):not(.vela){position:relative}
+.vidro{background:linear-gradient(180deg,var(--a-brilho),rgba(255,255,255,0) 40%),var(--a-vidro);border:1px solid var(--a-borda);border-radius:18px;backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);box-shadow:var(--a-sombra);padding:16px;display:grid;gap:10px}
+.vidro h4{margin:0;font:700 15px var(--f-titulo);color:var(--a-forte)}
+.vidro .grande{font:800 44px/1 var(--f-titulo);color:var(--a-forte);letter-spacing:-.03em}
+.vidro p{font-size:13px;color:var(--a-texto-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:7px 14px;border-radius:999px;background:var(--a-suave);border:1px solid var(--a-borda);font:600 13px var(--f-texto);color:var(--a-texto)}
+.chip.on{background:var(--a-pri);border-color:transparent;color:var(--a-sobre-pri)}
+.botao{justify-self:start;padding:11px 18px;border-radius:12px;background:var(--a-pri);color:var(--a-sobre-pri);font:700 14px var(--f-texto)}
+.lot{display:flex;gap:14px;flex-wrap:wrap;font:700 13px var(--f-texto)}
+.lot span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:currentColor;margin-right:6px}
+.lot .b{color:var(--a-baixa)} .lot .m{color:var(--a-media)} .lot .a{color:var(--a-alta)}
+.sup-demo .tit-tema{font:600 11px var(--f-texto);letter-spacing:.14em;text-transform:uppercase;color:var(--a-texto-2)}
+
+/* telas */
+.painel{border-radius:16px;overflow:hidden;border:1px solid var(--borda)}
+.painel img{width:100%}
+.faixa{overflow-x:auto;border-radius:16px;border:1px solid var(--borda);background:var(--sup);padding:16px}
+.faixa ol{display:flex;gap:14px;margin:0;padding:0;list-style:none;width:max-content}
+.faixa li{display:grid;gap:6px;width:170px}
+.faixa img{width:170px;height:auto;border-radius:12px}
+.faixa span{font:500 12px var(--f-texto);color:var(--texto-3);text-align:center}
+
+/* escrita */
+.voz{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.voz>div{background:var(--sup);border:1px solid var(--borda);border-radius:16px;padding:16px;display:grid;gap:8px;align-content:start}
+.voz b{font:700 14px var(--f-titulo)}
+.voz p{font-size:13.5px;color:var(--texto-2)}
+.voz q{display:block;font-size:13.5px;quotes:none;border-left:3px solid var(--destaque);padding-left:10px;color:var(--texto)}
+.voz q.nao{border-color:var(--erro);color:var(--texto-3);text-decoration:line-through}
+
+/* usos */
+.usos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
+.uso{display:grid;gap:8px;min-width:0}
+.uso .palco{min-height:150px;padding:24px 18px}
+.uso .palco img:not(.bg){width:min(240px,90%)}
+.selo{display:inline-flex;align-items:center;gap:6px;font:700 12px var(--f-texto)}
+.selo.nao{color:var(--erro)} .selo.sim{color:var(--destaque)}
+.uso p{font-size:13px;color:var(--texto-2)}
+.estica{transform:scaleX(1.45)}
+.gira{transform:rotate(-12deg)}
+.cor-errada{filter:hue-rotate(150deg) saturate(1.6)}
+
+/* arquivos */
+.tabela{overflow-x:auto;border:1px solid var(--borda);border-radius:16px;background:var(--sup)}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:13.5px}
+th,td{text-align:left;padding:11px 14px;border-top:1px solid var(--borda);vertical-align:top}
+thead th{border-top:0;font:600 11px var(--f-texto);letter-spacing:.1em;text-transform:uppercase;color:var(--texto-3)}
+td code{white-space:nowrap}
+@media (max-width:760px){.const{grid-template-columns:1fr}.passo{grid-template-columns:1fr;gap:2px}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-ic" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#7AF5DF"/><stop offset=".5" stop-color="#1FE0BE"/><stop offset="1" stop-color="#46C2FF"/></linearGradient>
+    <linearGradient id="g-ic-c" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#12B89C"/><stop offset=".5" stop-color="#0A9A84"/><stop offset="1" stop-color="#1C7FD1"/></linearGradient>
+    <symbol id="d-guarda" viewBox="0 0 24 24"><path d="M22 12a10 10 0 0 0-20 0Z"/><path d="M12 12v8a2 2 0 0 0 4 0M12 2v1"/></symbol>
+    <symbol id="d-carro" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2M9 17h6"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></symbol>
+    <symbol id="d-chuva" viewBox="0 0 24 24"><path d="M4 14.9A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.24M16 14v6M8 14v6M12 16v6"/></symbol>
+    <symbol id="d-gente" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/><circle cx="9" cy="7" r="4"/></symbol>
+    <symbol id="d-ondas" viewBox="0 0 24 24"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></symbol>
+    <symbol id="d-bussola" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.8 5.41a2 2 0 0 1-1.27 1.27L7.76 16.24l1.8-5.41a2 2 0 0 1 1.27-1.27z"/></symbol>
+  </defs>
+</svg>
+
+<main class="wrap">
+  <header class="abre">
+    <span class="meta">Manual da identidade visual · aprovada em 24/11/2026</span>
+    <div class="palco p-noite"><img src="logotipo/svg/assinatura-horizontal-escuro.svg" alt="Logotipo SC Explorer"></div>
+    <div class="cab">
+      <h1>A identidade do SC Explorer</h1>
+      <p>Tudo o que dá cara ao app, num lugar só: logotipo, cores, tipografia, ícones, fotos, superfícies, telas e o jeito de escrever. Cada arquivo citado aqui está na pasta <code>identidade-visual/</code> do projeto.</p>
+    </div>
+    <ul class="indice" aria-label="Seções">
+      <li><a href="#logotipo">Logotipo</a></li><li><a href="#construcao">Construção</a></li><li><a href="#cores">Cores</a></li>
+      <li><a href="#tipografia">Tipografia</a></li><li><a href="#icones">Ícones</a></li><li><a href="#fotos">Fotos</a></li>
+      <li><a href="#superficies">Superfícies</a></li><li><a href="#telas">Telas</a></li><li><a href="#escrita">Escrita</a></li>
+      <li><a href="#cuidados">Cuidados</a></li><li><a href="#arquivos">Arquivos</a></li>
+    </ul>
+  </header>
+
+  <section id="logotipo" aria-labelledby="t-versoes">
+    <div class="cab"><span class="rot">Logotipo</span><h2 id="t-versoes">Uma versão para cada fundo</h2>
+      <p>O símbolo é a Ilha de Santa Catarina num traço só: os morros sobem, descem e terminam em onda, com o sol se pondo no canto. Embaixo, uma linha de mar. O nome vem em itálico pesado, com o "SC" no degradê da Lagoa para o céu. A cor do fundo decide a versão: em fundo escuro, a escura; em fundo claro, a clara; sobre foto, só com uma faixa escura por baixo, como no app.</p></div>
+    <div class="grade">
+      <div class="versao"><div class="palco p-noite"><img src="logotipo/svg/assinatura-horizontal-escuro.svg" alt="Assinatura horizontal, versão para fundo escuro"></div>
+        <div class="legenda"><b>Horizontal · fundo escuro</b><span>A principal. Site, app, redes, apresentações.</span><code>assinatura-horizontal-escuro</code></div></div>
+      <div class="versao"><div class="palco p-areia"><img src="logotipo/svg/assinatura-horizontal-claro.svg" alt="Assinatura horizontal, versão para fundo claro"></div>
+        <div class="legenda"><b>Horizontal · fundo claro</b><span>Papel, fundo branco ou areia, tema claro do app.</span><code>assinatura-horizontal-claro</code></div></div>
+      <div class="versao"><div class="palco p-noite"><img class="v" src="logotipo/svg/assinatura-vertical-escuro.svg" alt="Assinatura vertical, versão para fundo escuro"></div>
+        <div class="legenda"><b>Vertical · fundo escuro</b><span>Espaços quadrados ou altos: post, capa, cartaz.</span><code>assinatura-vertical-escuro</code></div></div>
+      <div class="versao"><div class="palco p-areia"><img class="v" src="logotipo/svg/assinatura-vertical-claro.svg" alt="Assinatura vertical, versão para fundo claro"></div>
+        <div class="legenda"><b>Vertical · fundo claro</b><span>A mesma, para papel e fundos claros.</span><code>assinatura-vertical-claro</code></div></div>
+      <div class="versao"><div class="palco p-foto"><img class="bg" src="imagens/foto-exemplo.webp" alt=""><img src="logotipo/svg/assinatura-horizontal-branco.svg" alt="Assinatura toda branca sobre foto"></div>
+        <div class="legenda"><b>Branca</b><span>Sobre foto (com faixa escura) e impressão em uma cor.</span><code>assinatura-horizontal-branco · assinatura-vertical-branco</code></div></div>
+      <div class="versao"><div class="palco p-branco"><img src="logotipo/svg/assinatura-horizontal-preto.svg" alt="Assinatura toda em azul-noite"></div>
+        <div class="legenda"><b>Uma cor (azul-noite)</b><span>Carimbo, gravação, documento em preto e branco.</span><code>assinatura-horizontal-preto · assinatura-vertical-preto</code></div></div>
+      <div class="versao"><div class="palco p-noite"><img class="s" src="logotipo/svg/simbolo-escuro.svg" alt="Símbolo sozinho"></div>
+        <div class="legenda"><b>Símbolo sozinho</b><span>Quando o nome já aparece perto: perfil de rede social, marca d'água, carimbo.</span><code>simbolo-escuro · -claro · -branco · -preto</code></div></div>
+      <div class="versao"><div class="palco p-areia"><img class="i" src="logotipo/svg/icone-app.svg" alt="Ícone do app"></div>
+        <div class="legenda"><b>Ícone do app</b><span>Tela do celular e aba do navegador. Não muda com o tema.</span><code>icone-app · icone-app-mascara · favicon-32</code></div></div>
+    </div>
+  </section>
+
+  <section id="construcao" aria-labelledby="t-const">
+    <div class="cab"><span class="rot">Construção</span><h2 id="t-const">Proporções e respiro</h2>
+      <p>As medidas partem da altura do nome. Mantenha estas proporções; os arquivos já vêm montados assim.</p></div>
+    <div class="const">
+      <div class="diagrama">
+        <svg viewBox="0 0 640 230" role="img" aria-label="Diagrama: símbolo com 1,47 vezes a altura do nome, espaço de 0,4 e área de proteção de um quarto">
+          <rect x="22" y="22" width="596" height="168" fill="none" stroke="#46C2FF" stroke-opacity=".5" stroke-dasharray="5 5"/>
+          <image href="logotipo/svg/assinatura-horizontal-escuro.svg" x="22" y="22" width="596" height="130.8"/>
+          <line x1="22" y1="196" x2="45" y2="196" stroke="#FFD166" stroke-width="2"/>
+          <text x="22" y="214">área de proteção = ¼ do nome</text>
+          <line x1="606" y1="49" x2="606" y2="146" stroke="#1FE0BE" stroke-width="2"/>
+          <text x="470" y="214">símbolo = 1,47 × altura do nome</text>
+        </svg>
+      </div>
+      <ul class="regras">
+        <li><b>Área de proteção</b><span>Deixe livre, em volta da marca, ¼ da altura do nome. Nenhum texto ou borda entra nesse espaço. Os arquivos já trazem essa margem.</span></li>
+        <li><b>Tamanho mínimo</b><span>Horizontal: 120 px de largura na tela, ou 32 mm impresso. Vertical: 80 px ou 22 mm. Símbolo sozinho: 24 px ou 7 mm.</span></li>
+        <li><b>Nome e símbolo juntos</b><span>Na assinatura, o símbolo e o nome nunca se separam nem trocam de lugar.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="cores" aria-labelledby="t-cores">
+    <div class="cab"><span class="rot">Cores</span><h2 id="t-cores">A paleta do litoral</h2>
+      <p>Lagoa e céu fazem o degradê da marca. O sol aparece só no símbolo e em destaques pequenos. Noite e areia são os fundos dos dois temas do app. Os valores prontos para código estão em <code>cores/tokens.css</code> e <code>cores/tokens.json</code>.</p></div>
+    <div class="sub"><h3>Marca, em fundo escuro</h3>
+      <div class="cores">
+        <div class="cor"><i style="background:#1FE0BE"></i><div><b>Lagoa</b><code>#1FE0BE</code><span>RGB 31 224 190</span></div></div>
+        <div class="cor"><i style="background:#46C2FF"></i><div><b>Céu</b><code>#46C2FF</code><span>RGB 70 194 255</span></div></div>
+        <div class="cor"><i style="background:#FFD166"></i><div><b>Sol</b><code>#FFD166</code><span>RGB 255 209 102</span></div></div>
+        <div class="cor"><i style="background:#FF7A59"></i><div><b>Coral</b><code>#FF7A59</code><span>RGB 255 122 89</span></div></div>
+        <div class="cor"><i style="background:#050D18"></i><div><b>Noite</b><code>#050D18</code><span>RGB 5 13 24 · fundo escuro</span></div></div>
+      </div></div>
+    <div class="sub"><h3>Marca, em fundo claro</h3>
+      <div class="cores">
+        <div class="cor"><i style="background:#0B9C86"></i><div><b>Lagoa funda</b><code>#0B9C86</code><span>RGB 11 156 134</span></div></div>
+        <div class="cor"><i style="background:#1C7FD1"></i><div><b>Céu fundo</b><code>#1C7FD1</code><span>RGB 28 127 209</span></div></div>
+        <div class="cor"><i style="background:#0A1B2E"></i><div><b>Azul-noite</b><code>#0A1B2E</code><span>RGB 10 27 46 · texto</span></div></div>
+        <div class="cor"><i style="background:#F3EFE7"></i><div><b>Areia</b><code>#F3EFE7</code><span>RGB 243 239 231 · fundo claro</span></div></div>
+      </div></div>
+    <div class="sub"><h3>No app, tema por tema</h3>
+      <div class="temas">
+        <div class="tema e"><h3>Escuro (padrão)</h3>
+          <div class="fichas">
+            <div class="ficha"><i style="background:#050D18"></i><b>Fundo</b><code>#050D18</code></div>
+            <div class="ficha"><i style="background:rgba(13,32,52,.62)"></i><b>Vidro</b><code>13 32 52 · 62%</code></div>
+            <div class="ficha"><i style="background:#FFFFFF"></i><b>Forte</b><code>#FFFFFF</code></div>
+            <div class="ficha"><i style="background:#E2EAF2"></i><b>Texto</b><code>#E2EAF2</code></div>
+            <div class="ficha"><i style="background:#B3C4D6"></i><b>Texto 2</b><code>#B3C4D6</code></div>
+            <div class="ficha"><i style="background:#8093A8"></i><b>Texto 3</b><code>#8093A8</code></div>
+            <div class="ficha"><i style="background:#1FE0BE"></i><b>Primária</b><code>#1FE0BE</code></div>
+            <div class="ficha"><i style="background:#46C2FF"></i><b>Secundária</b><code>#46C2FF</code></div>
+            <div class="ficha"><i style="background:#FF6B57"></i><b>Coral</b><code>#FF6B57</code></div>
+          </div></div>
+        <div class="tema c"><h3>Claro "Sol forte"</h3>
+          <div class="fichas">
+            <div class="ficha"><i style="background:#F3EFE7"></i><b>Fundo</b><code>#F3EFE7</code></div>
+            <div class="ficha"><i style="background:rgba(255,255,255,.78)"></i><b>Vidro</b><code>branco · 78%</code></div>
+            <div class="ficha"><i style="background:#0A1B2E"></i><b>Forte</b><code>#0A1B2E</code></div>
+            <div class="ficha"><i style="background:#1E3247"></i><b>Texto</b><code>#1E3247</code></div>
+            <div class="ficha"><i style="background:#43586D"></i><b>Texto 2</b><code>#43586D</code></div>
+            <div class="ficha"><i style="background:#5F7286"></i><b>Texto 3</b><code>#5F7286</code></div>
+            <div class="ficha"><i style="background:#0A9A84"></i><b>Primária</b><code>#0A9A84</code></div>
+            <div class="ficha"><i style="background:#1C7FD1"></i><b>Secundária</b><code>#1C7FD1</code></div>
+            <div class="ficha"><i style="background:#E8553F"></i><b>Coral</b><code>#E8553F</code></div>
+          </div></div>
+      </div>
+      <p class="nota">No tema claro, a Lagoa e o céu ficam mais fundos para o texto ter contraste sob sol direto. O coral do app é um pouco mais vermelho que o da marca, para ler bem em tela pequena.</p></div>
+    <div class="sub"><h3>Lotação e trânsito</h3>
+      <div class="temas">
+        <div class="tema e"><div class="fichas">
+          <div class="ficha"><i style="background:#34D399"></i><b>Baixa · livre</b><code>#34D399</code></div>
+          <div class="ficha"><i style="background:#FFC542"></i><b>Média · lenta</b><code>#FFC542</code></div>
+          <div class="ficha"><i style="background:#FF5C5C"></i><b>Alta · parada</b><code>#FF5C5C</code></div></div></div>
+        <div class="tema c"><div class="fichas">
+          <div class="ficha"><i style="background:#0F9D6B"></i><b>Baixa · livre</b><code>#0F9D6B</code></div>
+          <div class="ficha"><i style="background:#B87A06"></i><b>Média · lenta</b><code>#B87A06</code></div>
+          <div class="ficha"><i style="background:#DC3B3B"></i><b>Alta · parada</b><code>#DC3B3B</code></div></div></div>
+      </div>
+      <p class="nota">Essas três cores têm significado: verde, amarelo e vermelho dizem quanto a praia está cheia ou a via está travada. Não use em peças de marca, para não parecer aviso.</p></div>
+  </section>
+
+  <section id="tipografia" aria-labelledby="t-tipo">
+    <div class="cab"><span class="rot">Tipografia</span><h2 id="t-tipo">Duas famílias, as duas grátis</h2>
+      <p>As duas são do Google Fonts, com licença aberta (OFL): podem ser usadas em qualquer peça, impressa ou digital, sem pagar. Os arquivos de instalação e as licenças estão em <code>tipografia/</code>.</p></div>
+    <div class="tipos">
+      <div class="tipo"><span class="rot">Nome e títulos</span><p class="amostra-t"><b>SC</b> Explorer</p>
+        <dl><dt>Família</dt><dd>Plus Jakarta Sans</dd><dt>Peso</dt><dd>ExtraBold (800) itálico no nome; 700 e 800 nos títulos</dd><dt>Espaço</dt><dd>−3,5% entre letras no nome; −2% nos títulos</dd></dl></div>
+      <div class="tipo"><span class="rot">Textos</span><p class="amostra-x">Playa Mole: olas de 1,2 m, agua a 21°. Mejor horario: antes de las 10h. Ocupación estimada: media.</p>
+        <dl><dt>Família</dt><dd>Inter</dd><dt>Peso</dt><dd>400 no texto, 600 nos rótulos, 700 nos botões</dd><dt>Uso</dt><dd>tudo que se lê em bloco, números e tabelas</dd></dl></div>
+    </div>
+    <div class="sub"><h3>Escala do app (celular)</h3>
+      <div class="escala">
+        <div class="passo"><code>44 · Jakarta 800</code><p style="font:800 44px/1.1 var(--f-titulo);letter-spacing:-.03em">27°</p></div>
+        <div class="passo"><code>30 · Jakarta 800</code><p style="font:800 30px/1.15 var(--f-titulo);letter-spacing:-.025em">Explorá Florianópolis</p></div>
+        <div class="passo"><code>22 · Jakarta 800</code><p style="font:800 22px/1.2 var(--f-titulo);letter-spacing:-.02em">Playas y ocupación</p></div>
+        <div class="passo"><code>15 · Jakarta 700</code><p style="font:700 15px var(--f-titulo)">Clima ahora en Florianópolis</p></div>
+        <div class="passo"><code>15 · Inter 400</code><p style="font:400 15px var(--f-texto)">Parcialmente nublado, máx. 29°, mín. 21°</p></div>
+        <div class="passo"><code>13 · Inter 600</code><p style="font:600 13px var(--f-texto)">Norte · agua apta</p></div>
+        <div class="passo"><code>11 · Inter 600</code><p style="font:600 11px var(--f-texto);letter-spacing:.12em;text-transform:uppercase">Estimación</p></div>
+      </div></div>
+  </section>
+
+  <section id="icones" aria-labelledby="t-icones">
+    <div class="cab"><span class="rot">Ícones</span><h2 id="t-icones">Traço fino, cantos redondos</h2>
+      <p>Os ícones de interface são desenhados em 24 × 24, com traço de 1,8 e pontas redondas (base Lucide, licença ISC). Pegam a cor do texto em volta; nos atalhos e títulos de cartão ganham o degradê da Lagoa. Os de clima são cheios e coloridos, com uma versão para cada tema.</p></div>
+    <div class="sub"><h3>Com degradê (atalhos e destaques)</h3>
+      <div class="climas">
+        <div class="palco p-noite"><div class="grad-demo"><svg><use href="#d-guarda"/></svg><svg><use href="#d-carro"/></svg><svg><use href="#d-chuva"/></svg><svg><use href="#d-gente"/></svg><svg><use href="#d-ondas"/></svg><svg><use href="#d-bussola"/></svg></div></div>
+        <div class="palco p-areia"><div class="grad-demo"><svg><use href="#d-guarda"/></svg><svg><use href="#d-carro"/></svg><svg><use href="#d-chuva"/></svg><svg><use href="#d-gente"/></svg><svg><use href="#d-ondas"/></svg><svg><use href="#d-bussola"/></svg></div></div>
+      </div></div>
+    <div class="sub"><h3>Clima · escuro e claro</h3>
+      <div class="climas">
+        <div class="palco p-noite"><img src="icones/clima/escuro/sol.svg" alt="Sol"><img src="icones/clima/escuro/sol-nuvem.svg" alt="Sol com nuvem"><img src="icones/clima/escuro/nuvem.svg" alt="Nublado"><img src="icones/clima/escuro/chuva.svg" alt="Chuva"><img src="icones/clima/escuro/tormenta.svg" alt="Tempestade"><img src="icones/clima/escuro/lua.svg" alt="Lua"><img src="icones/clima/escuro/lua-nuvem.svg" alt="Lua com nuvem"></div>
+        <div class="palco p-areia"><img src="icones/clima/claro/sol.svg" alt="Sol"><img src="icones/clima/claro/sol-nuvem.svg" alt="Sol com nuvem"><img src="icones/clima/claro/nuvem.svg" alt="Nublado"><img src="icones/clima/claro/chuva.svg" alt="Chuva"><img src="icones/clima/claro/tormenta.svg" alt="Tempestade"><img src="icones/clima/claro/lua.svg" alt="Lua"><img src="icones/clima/claro/lua-nuvem.svg" alt="Lua com nuvem"></div>
+      </div></div>
+    <div class="sub"><h3>Interface · 50 ícones</h3>
+      <div class="icones">
+        <div class="icone"><img src="icones/interface/alerta.svg" alt=""><span>alerta</span></div>
+        <div class="icone"><img src="icones/interface/atualizar.svg" alt=""><span>atualizar</span></div>
+        <div class="icone"><img src="icones/interface/aviao.svg" alt=""><span>aviao</span></div>
+        <div class="icone"><img src="icones/interface/baixar.svg" alt=""><span>baixar</span></div>
+        <div class="icone"><img src="icones/interface/bandeira.svg" alt=""><span>bandeira</span></div>
+        <div class="icone"><img src="icones/interface/busca.svg" alt=""><span>busca</span></div>
+        <div class="icone"><img src="icones/interface/bussola.svg" alt=""><span>bussola</span></div>
+        <div class="icone"><img src="icones/interface/cafe.svg" alt=""><span>cafe</span></div>
+        <div class="icone"><img src="icones/interface/calendario.svg" alt=""><span>calendario</span></div>
+        <div class="icone"><img src="icones/interface/camera.svg" alt=""><span>camera</span></div>
+        <div class="icone"><img src="icones/interface/carro.svg" alt=""><span>carro</span></div>
+        <div class="icone"><img src="icones/interface/carteira.svg" alt=""><span>carteira</span></div>
+        <div class="icone"><img src="icones/interface/casa.svg" alt=""><span>casa</span></div>
+        <div class="icone"><img src="icones/interface/celular.svg" alt=""><span>celular</span></div>
+        <div class="icone"><img src="icones/interface/chama.svg" alt=""><span>chama</span></div>
+        <div class="icone"><img src="icones/interface/check.svg" alt=""><span>check</span></div>
+        <div class="icone"><img src="icones/interface/chuva.svg" alt=""><span>chuva</span></div>
+        <div class="icone"><img src="icones/interface/coracao.svg" alt=""><span>coracao</span></div>
+        <div class="icone"><img src="icones/interface/externo.svg" alt=""><span>externo</span></div>
+        <div class="icone"><img src="icones/interface/gente.svg" alt=""><span>gente</span></div>
+        <div class="icone"><img src="icones/interface/globo.svg" alt=""><span>globo</span></div>
+        <div class="icone"><img src="icones/interface/gota.svg" alt=""><span>gota</span></div>
+        <div class="icone"><img src="icones/interface/guarda.svg" alt=""><span>guarda</span></div>
+        <div class="icone"><img src="icones/interface/info.svg" alt=""><span>info</span></div>
+        <div class="icone"><img src="icones/interface/lampada.svg" alt=""><span>lampada</span></div>
+        <div class="icone"><img src="icones/interface/loja.svg" alt=""><span>loja</span></div>
+        <div class="icone"><img src="icones/interface/lua.svg" alt=""><span>lua</span></div>
+        <div class="icone"><img src="icones/interface/mais.svg" alt=""><span>mais</span></div>
+        <div class="icone"><img src="icones/interface/mapa.svg" alt=""><span>mapa</span></div>
+        <div class="icone"><img src="icones/interface/montanha.svg" alt=""><span>montanha</span></div>
+        <div class="icone"><img src="icones/interface/nascer.svg" alt=""><span>nascer</span></div>
+        <div class="icone"><img src="icones/interface/navegar.svg" alt=""><span>navegar</span></div>
+        <div class="icone"><img src="icones/interface/ondas.svg" alt=""><span>ondas</span></div>
+        <div class="icone"><img src="icones/interface/onibus.svg" alt=""><span>onibus</span></div>
+        <div class="icone"><img src="icones/interface/pessoa.svg" alt=""><span>pessoa</span></div>
+        <div class="icone"><img src="icones/interface/pino.svg" alt=""><span>pino</span></div>
+        <div class="icone"><img src="icones/interface/predio.svg" alt=""><span>predio</span></div>
+        <div class="icone"><img src="icones/interface/relogio.svg" alt=""><span>relogio</span></div>
+        <div class="icone"><img src="icones/interface/rota.svg" alt=""><span>rota</span></div>
+        <div class="icone"><img src="icones/interface/sacola.svg" alt=""><span>sacola</span></div>
+        <div class="icone"><img src="icones/interface/saude.svg" alt=""><span>saude</span></div>
+        <div class="icone"><img src="icones/interface/seta.svg" alt=""><span>seta</span></div>
+        <div class="icone"><img src="icones/interface/sino.svg" alt=""><span>sino</span></div>
+        <div class="icone"><img src="icones/interface/sol.svg" alt=""><span>sol</span></div>
+        <div class="icone"><img src="icones/interface/talher.svg" alt=""><span>talher</span></div>
+        <div class="icone"><img src="icones/interface/telefone.svg" alt=""><span>telefone</span></div>
+        <div class="icone"><img src="icones/interface/termo.svg" alt=""><span>termo</span></div>
+        <div class="icone"><img src="icones/interface/vento.svg" alt=""><span>vento</span></div>
+        <div class="icone"><img src="icones/interface/voltar.svg" alt=""><span>voltar</span></div>
+        <div class="icone"><img src="icones/interface/x.svg" alt=""><span>x</span></div>
+      </div>
+      <p class="nota">Ícone novo segue as mesmas regras: 24 × 24, traço 1,8, pontas e cantos redondos, sem preenchimento. Entra primeiro no <code>src/sprite.svg</code> do app; depois <code>node icones/extrair.mjs</code> atualiza os arquivos avulsos.</p></div>
+  </section>
+
+  <section id="fotos" aria-labelledby="t-fotos">
+    <div class="cab"><span class="rot">Fotos</span><h2 id="t-fotos">Luz de fim de tarde, mar e cidade</h2>
+      <p>Nove fotos formam o banco da marca. Elas não mostram um lugar identificado: entram como ilustração, por assunto e pela hora do dia. A foto do topo do app muda sozinha conforme a hora e o tempo. A miniatura ao lado de uma praia é ilustrativa até cada praia ter a sua foto.</p></div>
+    <div class="fotos">
+      <div class="foto"><img src="imagens/enseada-por-do-sol-480.webp" alt="Enseada ao pôr do sol" loading="lazy"><span>enseada-por-do-sol · topo de dia e à tarde</span></div>
+      <div class="foto"><img src="imagens/praia-anoitecer-480.webp" alt="Praia ao anoitecer" loading="lazy"><span>praia-anoitecer · topo à noite</span></div>
+      <div class="foto"><img src="imagens/trilha-por-do-sol-480.webp" alt="Trilha ao pôr do sol" loading="lazy"><span>trilha-por-do-sol · topo cedo, roteiros, explorar</span></div>
+      <div class="foto"><img src="imagens/centro-ponte-dia-480.webp" alt="Centro e ponte de dia" loading="lazy"><span>centro-ponte-dia · topo em dia nublado, cidade</span></div>
+      <div class="foto"><img src="imagens/beira-mar-noite-480.webp" alt="Beira-mar à noite" loading="lazy"><span>beira-mar-noite · topo com chuva, roteiro de chuva</span></div>
+      <div class="foto"><img src="imagens/avenida-ponte-480.webp" alt="Avenida com a ponte ao fundo" loading="lazy"><span>avenida-ponte · trânsito</span></div>
+      <div class="foto"><img src="imagens/praia-movimentada-480.webp" alt="Praia cheia em dia de sol" loading="lazy"><span>praia-movimentada · praias e lotação</span></div>
+      <div class="foto"><img src="imagens/enseada-dia-480.webp" alt="Enseada de dia" loading="lazy"><span>enseada-dia · praias e lugares</span></div>
+      <div class="foto"><img src="imagens/costao-anoitecer-480.webp" alt="Costão ao anoitecer" loading="lazy"><span>costao-anoitecer · lugares para explorar</span></div>
+    </div>
+    <ul class="regras duas">
+      <li><b>Texto sobre foto</b><span>Sempre branco, com um degradê escuro por baixo, nos dois temas do app.</span></li>
+      <li><b>Tamanhos</b><span>Cada foto tem 1200 px (destaque e computador) e 480 px (miniatura), em WebP. Os originais ficam fora do projeto.</span></li>
+    </ul>
+  </section>
+
+  <section id="superficies" aria-labelledby="t-sup">
+    <div class="cab"><span class="rot">Superfícies</span><h2 id="t-sup">Vidro sobre foto e mapa</h2>
+      <p>Os cartões do app são de vidro: fundo translúcido com desfoque, borda de 1 px e um brilho leve no topo. Cantos de 18 px nos cartões, 12 px nos botões e blocos, redondos nos chips e etiquetas. A cor de ação é a primária do tema.</p></div>
+    <div class="temas">
+      <div class="sup-demo e-app"><img class="fundo" src="imagens/enseada-por-do-sol-480.webp" alt=""><div class="vela"></div>
+        <span class="tit-tema">Tema escuro</span>
+        <div class="vidro"><h4>Clima ahora en Florianópolis</h4><div class="grande">27°</div><p>Parcialmente nublado · máx. 29° · mín. 21°</p></div>
+        <div class="chips"><span class="chip on">Todas</span><span class="chip">Norte</span><span class="chip">Este</span><span class="chip">Sur</span></div>
+        <div class="lot"><span class="b">Baja</span><span class="m">Media</span><span class="a">Alta</span></div>
+        <span class="botao">Ver en el mapa</span></div>
+      <div class="sup-demo c-app"><img class="fundo" src="imagens/enseada-dia-480.webp" alt=""><div class="vela"></div>
+        <span class="tit-tema">Tema claro "Sol forte"</span>
+        <div class="vidro"><h4>Clima ahora en Florianópolis</h4><div class="grande">27°</div><p>Parcialmente nublado · máx. 29° · mín. 21°</p></div>
+        <div class="chips"><span class="chip on">Todas</span><span class="chip">Norte</span><span class="chip">Este</span><span class="chip">Sur</span></div>
+        <div class="lot"><span class="b">Baja</span><span class="m">Media</span><span class="a">Alta</span></div>
+        <span class="botao">Ver en el mapa</span></div>
+    </div>
+  </section>
+
+  <section id="telas" aria-labelledby="t-telas">
+    <div class="cab"><span class="rot">Telas</span><h2 id="t-telas">A identidade aplicada</h2>
+      <p>O painel do computador e as 13 telas do celular, nos dois temas, como na prancha aprovada (<code>prancha-telas.html</code>). Os prints em alta estão em <code>telas/escuro</code> e <code>telas/claro</code>.</p></div>
+    <div class="painel"><img src="telas/escuro/00-painel-computador.webp" alt="Painel principal do SC Explorer no computador, tema escuro" loading="lazy"></div>
+    <div class="sub"><h3>Celular · escuro</h3>
+      <div class="faixa"><ol>
+        <li><img src="telas/escuro/08-boas-vindas.webp" alt="Boas-vindas" loading="lazy"><span>Boas-vindas</span></li>
+        <li><img src="telas/escuro/01-inicio.webp" alt="Início" loading="lazy"><span>Início</span></li>
+        <li><img src="telas/escuro/02-praias.webp" alt="Praias" loading="lazy"><span>Praias</span></li>
+        <li><img src="telas/escuro/09-detalhe-praia.webp" alt="Detalhe da praia" loading="lazy"><span>Detalhe da praia</span></li>
+        <li><img src="telas/escuro/03-transito.webp" alt="Trânsito" loading="lazy"><span>Trânsito</span></li>
+        <li><img src="telas/escuro/04-mapa-lotacao.webp" alt="Mapa de lotação" loading="lazy"><span>Mapa de lotação</span></li>
+        <li><img src="telas/escuro/10-mar-e-mare.webp" alt="Mar e maré" loading="lazy"><span>Mar e maré</span></li>
+        <li><img src="telas/escuro/05-roteiros.webp" alt="Roteiros" loading="lazy"><span>Roteiros</span></li>
+        <li><img src="telas/escuro/06-dia-de-chuva.webp" alt="Dia de chuva" loading="lazy"><span>Dia de chuva</span></li>
+        <li><img src="telas/escuro/07-dicas.webp" alt="Dicas" loading="lazy"><span>Dicas</span></li>
+        <li><img src="telas/escuro/11-avisos.webp" alt="Avisos" loading="lazy"><span>Avisos</span></li>
+        <li><img src="telas/escuro/12-explorar.webp" alt="Explorar" loading="lazy"><span>Explorar</span></li>
+        <li><img src="telas/escuro/13-perfil.webp" alt="Perfil" loading="lazy"><span>Perfil</span></li>
+      </ol></div></div>
+    <div class="sub"><h3>Celular · claro</h3>
+      <div class="faixa"><ol>
+        <li><img src="telas/claro/08-boas-vindas.webp" alt="Boas-vindas" loading="lazy"><span>Boas-vindas</span></li>
+        <li><img src="telas/claro/01-inicio.webp" alt="Início" loading="lazy"><span>Início</span></li>
+        <li><img src="telas/claro/02-praias.webp" alt="Praias" loading="lazy"><span>Praias</span></li>
+        <li><img src="telas/claro/09-detalhe-praia.webp" alt="Detalhe da praia" loading="lazy"><span>Detalhe da praia</span></li>
+        <li><img src="telas/claro/03-transito.webp" alt="Trânsito" loading="lazy"><span>Trânsito</span></li>
+        <li><img src="telas/claro/04-mapa-lotacao.webp" alt="Mapa de lotação" loading="lazy"><span>Mapa de lotação</span></li>
+        <li><img src="telas/claro/10-mar-e-mare.webp" alt="Mar e maré" loading="lazy"><span>Mar e maré</span></li>
+        <li><img src="telas/claro/05-roteiros.webp" alt="Roteiros" loading="lazy"><span>Roteiros</span></li>
+        <li><img src="telas/claro/06-dia-de-chuva.webp" alt="Dia de chuva" loading="lazy"><span>Dia de chuva</span></li>
+        <li><img src="telas/claro/07-dicas.webp" alt="Dicas" loading="lazy"><span>Dicas</span></li>
+        <li><img src="telas/claro/11-avisos.webp" alt="Avisos" loading="lazy"><span>Avisos</span></li>
+        <li><img src="telas/claro/12-explorar.webp" alt="Explorar" loading="lazy"><span>Explorar</span></li>
+        <li><img src="telas/claro/13-perfil.webp" alt="Perfil" loading="lazy"><span>Perfil</span></li>
+      </ol></div></div>
+  </section>
+
+  <section id="escrita" aria-labelledby="t-escrita">
+    <div class="cab"><span class="rot">Escrita</span><h2 id="t-escrita">Como o SC Explorer fala</h2>
+      <p>O texto também é identidade. O turista lê no celular, na praia ou no carro: frase curta, número com unidade e a decisão primeiro.</p></div>
+    <div class="voz">
+      <div><b>Espanhol de Buenos Aires primeiro</b><p>O app abre em espanhol com "vos"; português e inglês por botão. Os três saem do mesmo dicionário.</p><q>Explorá Florianópolis</q></div>
+      <div><b>Estimativa, nunca "ao vivo"</b><p>Não existe fonte oficial de lotação de praia. O app diz que é estimativa, sempre.</p><q>Ocupación estimada: media</q><q class="nao">Ocupación en vivo</q></div>
+      <div><b>Número com unidade</b><p>Onda em metros, água em graus, atraso em minutos, hora no formato 10h.</p><q>Olas de 1,2 m · agua a 21° · +11 min</q></div>
+      <div><b>A decisão primeiro</b><p>Quem lê quer saber o que fazer. O dado vem depois, como motivo.</p><q>Mejor horario: antes de las 10h. UV 9 al mediodía.</q></div>
+    </div>
+  </section>
+
+  <section id="cuidados" aria-labelledby="t-usos">
+    <div class="cab"><span class="rot">Cuidados</span><h2 id="t-usos">O que não fazer</h2>
+      <p>A marca só é reconhecida se aparecer sempre igual. Estes são os erros mais comuns.</p></div>
+    <div class="usos">
+      <div class="uso"><div class="palco p-noite"><img src="logotipo/svg/assinatura-horizontal-escuro.svg" alt="Exemplo certo"></div><span class="selo sim">✓ Assim</span><p>Arquivo original, no fundo certo, com espaço em volta.</p></div>
+      <div class="uso"><div class="palco p-noite"><img class="estica" src="logotipo/svg/assinatura-horizontal-escuro.svg" alt="Exemplo errado: esticado"></div><span class="selo nao">✕ Esticar ou achatar</span><p>Mude o tamanho sempre na proporção (segure Shift).</p></div>
+      <div class="uso"><div class="palco p-noite"><img class="cor-errada" src="logotipo/svg/assinatura-horizontal-escuro.svg" alt="Exemplo errado: cores trocadas"></div><span class="selo nao">✕ Trocar as cores</span><p>Use só as versões da pasta.</p></div>
+      <div class="uso"><div class="palco p-areia"><img src="logotipo/svg/assinatura-horizontal-escuro.svg" alt="Exemplo errado: versão escura em fundo claro"></div><span class="selo nao">✕ Versão errada no fundo</span><p>O nome branco some no fundo claro: use a versão clara.</p></div>
+      <div class="uso"><div class="palco p-foto"><img class="bg" src="imagens/foto-exemplo.webp" alt="" style="filter:brightness(1.5)"><img src="logotipo/svg/assinatura-horizontal-claro.svg" alt="Exemplo errado: sobre foto clara sem faixa"></div><span class="selo nao">✕ Foto sem faixa escura</span><p>Sobre foto, use a branca com um degradê escuro por baixo.</p></div>
+      <div class="uso"><div class="palco p-noite"><img class="gira" src="logotipo/svg/assinatura-horizontal-escuro.svg" alt="Exemplo errado: girado"></div><span class="selo nao">✕ Girar ou inclinar</span><p>O itálico já faz o movimento. A marca fica sempre reta.</p></div>
+    </div>
+  </section>
+
+  <section id="arquivos" aria-labelledby="t-arq">
+    <div class="cab"><span class="rot">Arquivos</span><h2 id="t-arq">O que tem na pasta</h2>
+      <p>Tudo está em <code>identidade-visual/</code>, na raiz do projeto. SVG para gráfica, site e qualquer tamanho; PNG quando o programa não aceita SVG.</p></div>
+    <div class="tabela"><table>
+      <thead><tr><th>Pasta</th><th>O que tem</th><th>Quando usar</th></tr></thead>
+      <tbody>
+        <tr><td><code>logotipo/svg</code> · <code>logotipo/png</code></td><td>Assinatura horizontal e vertical, símbolo e ícone do app, em 4 cores (escuro, claro, branco, preto)</td><td>Toda peça com a marca</td></tr>
+        <tr><td><code>cores/</code></td><td><code>tokens.css</code> e <code>tokens.json</code>: marca, app escuro e claro, raios, vidro</td><td>Site, app, Figma, apresentações</td></tr>
+        <tr><td><code>tipografia/</code></td><td>Plus Jakarta Sans (normal e itálico) e Inter, fontes variáveis, com as licenças OFL</td><td>Instalar no computador para criar peças</td></tr>
+        <tr><td><code>icones/</code></td><td><code>interface/</code> (50), <code>clima/escuro</code> e <code>clima/claro</code> (7 cada) e o <code>sprite.svg</code> do app</td><td>Peças, apresentações, telas novas</td></tr>
+        <tr><td><code>imagens/</code></td><td>As 9 fotos em 1200 e 480 px, os mapas da ilha nos dois temas e a foto de exemplo</td><td>Fundo de peça, capa, post</td></tr>
+        <tr><td><code>telas/</code></td><td>Painel e 13 telas de celular, escuro e claro</td><td>Divulgação, apresentação, loja de apps</td></tr>
+        <tr><td><code>prancha-telas.html</code></td><td>A prancha v3 aprovada, com troca de idioma e tema</td><td>Referência de cada tela</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tabela"><table>
+      <thead><tr><th>Onde vai a marca</th><th>Arquivo</th><th>Formato</th></tr></thead>
+      <tbody>
+        <tr><td>Site, app, apresentação (fundo escuro)</td><td><code>assinatura-horizontal-escuro</code></td><td>SVG · PNG 800 e 2000 px</td></tr>
+        <tr><td>Papel, fundo branco ou areia</td><td><code>assinatura-horizontal-claro</code></td><td>SVG · PNG 800 e 2000 px</td></tr>
+        <tr><td>Post quadrado, story, cartaz</td><td><code>assinatura-vertical-escuro</code> ou <code>-claro</code></td><td>SVG · PNG 1200 px</td></tr>
+        <tr><td>Sobre foto</td><td><code>assinatura-horizontal-branco</code></td><td>SVG · PNG</td></tr>
+        <tr><td>Impressão em uma cor, carimbo</td><td><code>assinatura-horizontal-preto</code></td><td>SVG · PNG</td></tr>
+        <tr><td>Foto de perfil (Instagram, WhatsApp)</td><td><code>icone-app-1024.png</code></td><td>PNG 1024 px</td></tr>
+        <tr><td>Ícone do app no celular</td><td><code>icone-app-512</code>, <code>icone-app-mascara-512</code>, <code>apple-touch-icon-180</code></td><td>PNG</td></tr>
+        <tr><td>Aba do navegador</td><td><code>favicon-32.png</code> ou <code>icone-app.svg</code></td><td>PNG · SVG</td></tr>
+      </tbody>
+    </table></div>
+    <p class="nota">O nome nos SVGs está convertido em curvas: abre igual em qualquer computador, sem instalar a fonte. Para gerar de novo: <code>python logotipo/gerar.py</code> e depois <code>node logotipo/exportar-png.mjs &lt;playwright-core&gt; &lt;chrome.exe&gt;</code>.</p>
+  </section>
+</main>

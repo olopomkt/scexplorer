@@ -1,5 +1,5 @@
 # Gera o pacote do logotipo do SC Explorer (SVG com texto em curvas, independente de fonte instalada).
-# Uso: python gerar.py <pasta com PlusJakartaSans-Italic[wght].ttf>
+# Uso: python gerar.py  (lê a fonte de ../tipografia; outra pasta pode ser passada como argumento)
 # Proporções iguais às da identidade v3: símbolo com 1,47× a altura da fonte, espaço de 0,4× a fonte,
 # nome em Plus Jakarta Sans 800 itálico, espaçamento −0,035 em, "SC" em degradê e "Explorer" sólido.
 import sys, os
@@ -9,11 +9,12 @@ from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.pens.boundsPen import BoundsPen
 
-FONTES = sys.argv[1]
-SAIDA = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'svg')
+AQUI = os.path.dirname(os.path.abspath(__file__))
+FONTES = sys.argv[1] if len(sys.argv) > 1 else os.path.join(AQUI, '..', 'tipografia')
+SAIDA = os.path.join(AQUI, 'svg')
 os.makedirs(SAIDA, exist_ok=True)
 
-fonte = instantiateVariableFont(TTFont(os.path.join(FONTES, 'pjs-italic.ttf')), {'wght': 800})
+fonte = instantiateVariableFont(TTFont(os.path.join(FONTES, 'PlusJakartaSans-Italic[wght].ttf')), {'wght': 800})
 gs = fonte.getGlyphSet(); cmap = fonte.getBestCmap(); upm = fonte['head'].unitsPerEm
 hmtx = fonte['hmtx']; cap = fonte['OS/2'].sCapHeight
 

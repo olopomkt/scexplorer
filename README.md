@@ -21,6 +21,7 @@ INMET (avisos oficiais) ──────────────────�
 - **Roteiros:** `src/motor/roteiro.js` — regras sobre `src/conteudo/lugares.js` (lugares reais).
 - **Avisos:** `src/motor/avisos.js` — INMET + regras sobre os dados do momento.
 - **Textos da interface:** `src/conteudo/textos.js` (chave em espanhol → [português, inglês]).
+- **Identidade visual:** `identidade-visual/` — logotipo, cores, fontes, ícones, fotos, telas e o manual (`GUIA.html`).
 
 ## Rodar no computador
 
