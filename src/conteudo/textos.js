@@ -1,0 +1,133 @@
+// Dicionário da interface: chave = texto em espanhol (idioma padrão) · valor = [português, inglês].
+// Conferência: node scripts/conferir-traducoes.mjs (lista o que faltar).
+export const D = {
+  // navegação e telas
+  'Inicio': ['Início', 'Home'], 'Bienvenida': ['Boas-vindas', 'Welcome'], 'Panel principal': ['Painel principal', 'Dashboard'],
+  'Playas': ['Praias', 'Beaches'], 'Playa': ['Praia', 'Beach'], 'Mapa': ['Mapa', 'Map'], 'Explorar': ['Explorar', 'Explore'],
+  'Avisos': ['Avisos', 'Alerts'], 'Perfil': ['Perfil', 'Profile'], 'Tránsito': ['Trânsito', 'Traffic'], 'Clima y mar': ['Clima e mar', 'Weather & sea'],
+  'Mapa de ocupación': ['Mapa de lotação', 'Crowd map'], 'Itinerarios': ['Roteiros', 'Itineraries'], 'Día de lluvia': ['Dia de chuva', 'Rainy day'],
+  'Consejos': ['Dicas', 'Tips'], 'Consejos y info': ['Dicas e info', 'Tips & info'], 'Info local': ['Info local', 'Local info'], 'Emergencias': ['Emergências', 'Emergencies'],
+  'Menú': ['Menu', 'Menu'], 'Secciones': ['Seções', 'Sections'], 'Volver': ['Voltar', 'Back'], 'Cargando…': ['Carregando…', 'Loading…'],
+  'Perfil y ajustes': ['Perfil e ajustes', 'Profile & settings'], 'Playas y ocupación': ['Praias e lotação', 'Beaches & crowds'],
+  'Tránsito y tramos': ['Trânsito e trechos', 'Traffic & roads'], 'Itinerarios del día': ['Roteiros do dia', 'Day plans'], 'Mar y marea': ['Mar e maré', 'Sea & tides'],
+
+  // início
+  '¡Hola, explorador!': ['Olá, explorador!', 'Hi, explorer!'],
+  'Planeá, explorá y aprovechá lo mejor de Florianópolis.': ['Planeje, explore e aproveite o melhor de Florianópolis.', 'Plan, explore and enjoy the best of Florianópolis.'],
+  '¿Qué querés hacer hoy?': ['O que você quer fazer hoje?', 'What do you want to do today?'],
+  '¿Qué querés hacer hoy? (playa, mirador, itinerario, restaurante…)': ['O que você quer fazer hoje? (praia, mirante, roteiro, restaurante…)', 'What do you want to do today? (beach, viewpoint, itinerary, restaurant…)'],
+  'Cambiar idioma': ['Mudar idioma', 'Change language'], 'Ahora': ['Agora', 'Now'], 'ahora': ['agora', 'now'],
+  'Ocupación de las playas': ['Lotação das praias', 'Beach crowds'],
+  'Mirá cuáles están más llenas en este momento (estimación).': ['Veja quais estão mais cheias agora (estimativa).', 'See which ones are busiest right now (estimate).'],
+  'Consejo del momento': ['Dica do momento', 'Tip of the moment'], 'Ver más': ['Ver mais', 'See more'], 'Hoy en Floripa': ['Hoje em Floripa', 'Today in Floripa'],
+  'Ocupación': ['Lotação', 'Crowds'], 'Norte de la Isla': ['Norte da Ilha', 'North of the Island'], 'Sur de la Isla': ['Sul da Ilha', 'South of the Island'], 'Este y Lagoa': ['Leste e Lagoa', 'East & Lagoa'],
+  'Clima: WeatherAPI · Tránsito: TomTom · Avisos: INMET. Ocupación: estimación del SC Explorer.': ['Clima: WeatherAPI · Trânsito: TomTom · Avisos: INMET. Lotação: estimativa do SC Explorer.', 'Weather: WeatherAPI · Traffic: TomTom · Alerts: INMET. Crowds: SC Explorer estimate.'],
+  'Explorá Florianópolis': ['Explore Florianópolis', 'Explore Florianópolis'],
+  'Playas, tránsito, clima, consejos e itinerarios, actualizados cada 12 minutos.': ['Praias, trânsito, clima, dicas e roteiros, atualizados a cada 12 minutos.', 'Beaches, traffic, weather, tips and itineraries, updated every 12 minutes.'],
+  'Gastronomía': ['Gastronomia', 'Food'], 'Paseos': ['Passeios', 'Tours'], 'Clima ahora en Florianópolis': ['Clima agora em Florianópolis', 'Weather now in Florianópolis'],
+  'Próximos días': ['Próximos dias', 'Next days'], 'Tránsito en la Isla': ['Trânsito na Ilha', 'Traffic on the Island'], 'Ver en el mapa': ['Ver no mapa', 'View on map'],
+  'estimación': ['estimativa', 'estimate'], 'Estimación': ['Estimativa', 'Estimate'], 'Tramos': ['Trechos', 'Roads'],
+  'Itinerario del día': ['Roteiro do dia', 'Today’s itinerary'], 'Itinerario de lluvia': ['Roteiro de chuva', 'Rainy-day itinerary'],
+  'Día con lluvia: plan bajo techo': ['Dia de chuva: plano coberto', 'Rainy day: indoor plan'], 'Un día completo en la Isla': ['Um dia completo na Ilha', 'A full day on the Island'],
+  'Floripa con lluvia: ¿qué hacer?': ['Floripa com chuva: o que fazer?', 'Floripa in the rain: what to do?'],
+  'Mercado Público, museos y cafés bajo techo.': ['Mercado Público, museus e cafés cobertos.', 'Mercado Público, museums and indoor cafés.'],
+  'Colectivo: cómo pagar': ['Ônibus: como pagar', 'Bus: how to pay'], 'Pagar con Pix desde Mercado Pago': ['Pagar com Pix pelo Mercado Pago', 'Pay with Pix from Mercado Pago'],
+  'Emergencias: 193 · 192 · 190': ['Emergências: 193 · 192 · 190', 'Emergencies: 193 · 192 · 190'],
+  'Llevalo en tu celular': ['Leve no seu celular', 'Take it on your phone'],
+  'Abrí el enlace en el celular y tocá "Agregar a inicio". Funciona como una app, incluso sin señal.': ['Abra o link no celular e toque em "Adicionar à tela de início". Funciona como um app, até sem sinal.', 'Open the link on your phone and tap "Add to Home Screen". It works like an app, even offline.'],
+  'Litoral SC': ['Litoral SC', 'SC coast'],
+
+  // selo do dado
+  'Datos de ejemplo': ['Dados de exemplo', 'Sample data'], 'Sin conexión · datos de {h}': ['Sem conexão · dados das {h}', 'Offline · data from {h}'],
+  'Actualizado {x}': ['Atualizado {x}', 'Updated {x}'], 'hace {n} min': ['há {n} min', '{n} min ago'], 'hace {n} h': ['há {n} h', '{n} h ago'], 'hace {n} días': ['há {n} dias', '{n} days ago'],
+
+  // clima
+  'Ahora en Florianópolis': ['Agora em Florianópolis', 'Now in Florianópolis'], 'Sensación': ['Sensação', 'Feels like'], 'Viento': ['Vento', 'Wind'], 'Humedad': ['Umidade', 'Humidity'],
+  'máx.': ['máx.', 'high'], 'mín.': ['mín.', 'low'], 'UV máx.': ['UV máx.', 'Max UV'], 'UV {n} · {nivel}': ['UV {n} · {nivel}', 'UV {n} · {nivel}'],
+  'Despejado': ['Céu limpo', 'Clear'], 'Parcialmente nublado': ['Parcialmente nublado', 'Partly cloudy'], 'Nublado': ['Nublado', 'Cloudy'], 'Neblina': ['Neblina', 'Mist'],
+  'Lluvia débil': ['Chuva fraca', 'Light rain'], 'Lluvia': ['Chuva', 'Rain'], 'Tormenta': ['Tempestade', 'Storm'],
+  'Extremo': ['Extremo', 'Extreme'], 'Muy alto': ['Muito alto', 'Very high'], 'Alto': ['Alto', 'High'], 'Moderado': ['Moderado', 'Moderate'], 'Bajo': ['Baixo', 'Low'],
+  'Hoy': ['Hoje', 'Today'], 'hoy': ['hoje', 'today'], 'Mañana': ['Amanhã', 'Tomorrow'], 'Hora por hora': ['Hora a hora', 'Hour by hour'],
+  'Marea de hoy': ['Maré de hoje', 'Today’s tide'], 'Marea de mañana': ['Maré de amanhã', 'Tomorrow’s tide'], 'altura en metros': ['altura em metros', 'height in meters'],
+  'Pleamar': ['Maré alta', 'High tide'], 'Bajamar': ['Maré baixa', 'Low tide'], 'Sin tabla de mareas por ahora.': ['Sem tábua de marés por enquanto.', 'No tide table for now.'],
+  'Sol': ['Sol', 'Sun'], 'Luna': ['Lua', 'Moon'], 'Agua': ['Água', 'Water'], 'Olas': ['Ondas', 'Waves'], 'Olas por región': ['Ondas por região', 'Waves by region'],
+  'Isla': ['Ilha', 'Island'], 'Calmo': ['Calmo', 'Calm'], 'Agitado': ['Agitado', 'Rough'],
+  'El pronóstico no distingue las zonas hoy. Las playas de bahía suelen estar más calmas.': ['A previsão não diferencia as regiões hoje. As praias de baía costumam ficar mais calmas.', 'The forecast doesn’t tell the areas apart today. Bay beaches are usually calmer.'],
+  'Clima, mar y mareas: WeatherAPI. Las mareas son de previsión: pueden variar unos minutos.': ['Clima, mar e marés: WeatherAPI. As marés são de previsão: podem variar alguns minutos.', 'Weather, sea and tides: WeatherAPI. Tides are forecasts and may vary by a few minutes.'],
+  'Nueva': ['Nova', 'New'], 'Creciente': ['Crescente', 'Waxing crescent'], 'Cuarto creciente': ['Quarto crescente', 'First quarter'], 'Gibosa creciente': ['Gibosa crescente', 'Waxing gibbous'],
+  'Llena': ['Cheia', 'Full'], 'Gibosa menguante': ['Gibosa minguante', 'Waning gibbous'], 'Cuarto menguante': ['Quarto minguante', 'Last quarter'], 'Menguante': ['Minguante', 'Waning crescent'],
+
+  // praias
+  'Lista': ['Lista', 'List'], 'Todas': ['Todas', 'All'], 'Favoritas': ['Favoritas', 'Favorites'], 'Favorita': ['Favorita', 'Favorite'],
+  'Baja': ['Baixa', 'Low'], 'Media': ['Média', 'Medium'], 'Alta': ['Alta', 'High'],
+  'bahía · agua calma': ['baía · água calma', 'bay · calm water'], 'olas {m} m': ['ondas {m} m', 'waves {m} m'], 'mar abierto': ['mar aberto', 'open sea'],
+  'agua apta': ['água própria', 'safe water'], 'agua no apta': ['água imprópria', 'unsafe water'],
+  'De noche las playas están vacías. La estimación vuelve a las 7h.': ['À noite as praias ficam vazias. A estimativa volta às 7h.', 'Beaches are empty at night. The estimate comes back at 7 am.'],
+  'Ocupación estimada por hora, día, clima y tránsito. No es una medición.': ['Lotação estimada por hora, dia, clima e trânsito. Não é uma medição.', 'Crowds estimated from time, day, weather and traffic. Not a measurement.'],
+  'Todavía no tenés playas favoritas. Tocá el corazón en una playa.': ['Você ainda não tem praias favoritas. Toque no coração de uma praia.', 'No favorite beaches yet. Tap the heart on a beach.'],
+  'Ninguna playa en esta zona.': ['Nenhuma praia nesta região.', 'No beaches in this area.'], 'No encontramos esta playa.': ['Não encontramos esta praia.', 'We couldn’t find this beach.'],
+  'Foto ilustrativa': ['Foto ilustrativa', 'Illustrative photo'], 'Ocupación por hora': ['Lotação por hora', 'Crowds by hour'], 'Fuera de horario': ['Fora do horário', 'Off hours'],
+  'Pico estimado a las {h}': ['Pico estimado às {h}', 'Estimated peak at {h}'],
+  'Apta para baño': ['Própria para banho', 'Safe for swimming'], 'No apta para baño': ['Imprópria para banho', 'Unsafe for swimming'], 'Calidad del agua': ['Balneabilidade', 'Water quality'],
+  'IMA · último informe': ['IMA · último laudo', 'IMA · latest report'], 'Consultá el informe del IMA antes de bañarte.': ['Consulte o laudo do IMA antes do banho.', 'Check IMA’s report before swimming.'],
+  'Apta': ['Própria', 'Safe'], 'No apta': ['Imprópria', 'Unsafe'], 'Cómo llegar': ['Como chegar', 'Directions'],
+  'Mapa de la Isla de Santa Catarina': ['Mapa da Ilha de Santa Catarina', 'Map of Santa Catarina Island'],
+
+  // trânsito
+  'Libre': ['Livre', 'Clear'], 'Lento': ['Lento', 'Slow'], 'lento': ['lento', 'slow'], 'Detenido': ['Parado', 'Stopped'], 'Cerrado': ['Fechado', 'Closed'], 'cerrado': ['fechado', 'closed'],
+  'Flujo libre': ['Fluxo livre', 'Flowing freely'], 'Flujo moderado': ['Fluxo moderado', 'Moderate traffic'], 'Flujo lento': ['Fluxo lento', 'Slow traffic'],
+  'Más lento en: {v}.': ['Mais lento em: {v}.', 'Slower on: {v}.'], 'Sin demoras en los tramos principales.': ['Sem atrasos nos trechos principais.', 'No delays on the main roads.'],
+  'Situación actual': ['Situação atual', 'Current status'], 'Sin datos de tránsito por ahora.': ['Sem dados de trânsito por enquanto.', 'No traffic data for now.'],
+  'Datos de TomTom': ['Dados da TomTom', 'Data from TomTom'], 'El color muestra la velocidad comparada con la vía libre.': ['A cor mostra a velocidade comparada com a via livre.', 'Color shows speed compared with free-flowing traffic.'],
+  'Centro': ['Centro', 'Downtown'], 'Aeropuerto': ['Aeroporto', 'Airport'], 'Continente': ['Continente', 'Mainland'],
+  '+{n} min de {a} a {b}.': ['+{n} min de {a} a {b}.', '+{n} min from {a} to {b}.'], 'Vía cerrada según TomTom.': ['Via fechada segundo a TomTom.', 'Road closed according to TomTom.'],
+
+  // roteiros e chuva
+  'Almuerzo': ['Almoço', 'Lunch'], 'Tarde': ['Tarde', 'Afternoon'], 'Atardecer': ['Pôr do sol', 'Sunset'], 'Noche': ['Noite', 'Evening'],
+  'Libre: elegí algo cerca.': ['Livre: escolha algo por perto.', 'Free time: pick something nearby.'],
+  'Plan con lluvia': ['Plano com chuva', 'Rain plan'], 'Sugerido para hoy': ['Sugerido para hoje', 'Suggested for today'], 'Floripa bajo techo': ['Floripa coberta', 'Indoor Floripa'],
+  '{e} de Floripa': ['{e} de Floripa', 'Floripa {e}'], '1 día': ['1 dia', '1 day'], 'Ocupación media': ['Lotação média', 'Average crowds'],
+  'Armado por reglas con el pronóstico del día, sin IA. Siempre lugares reales.': ['Montado por regras com a previsão do dia, sem IA. Sempre lugares reais.', 'Built by rules from the day’s forecast, no AI. Always real places.'],
+  'Probabilidad de {p}% en las próximas 6 horas.': ['Chance de {p}% nas próximas 6 horas.', '{p}% chance in the next 6 hours.'],
+  'Hoy el pronóstico no indica lluvia fuerte. Igual, este es el plan B.': ['Hoje a previsão não indica chuva forte. Mesmo assim, este é o plano B.', 'No heavy rain in today’s forecast. Still, here’s plan B.'],
+  'Itinerario bajo techo': ['Roteiro coberto', 'Indoor itinerary'], 'para hoy': ['para hoje', 'for today'],
+  'Horarios de apertura: confirmá en el lugar antes de ir.': ['Horário de funcionamento: confirme no local antes de ir.', 'Opening hours: check with the place before you go.'],
+
+  // dicas
+  'Fuente': ['Fonte', 'Source'],
+  'Bomberos y guardavidas': ['Bombeiros e guarda-vidas', 'Fire department & lifeguards'], 'Ambulancia (SAMU)': ['SAMU (ambulância)', 'Ambulance (SAMU)'],
+  'Policía Militar': ['Polícia Militar', 'Police'], 'Defensa Civil': ['Defesa Civil', 'Civil Defense'],
+  'Números nacionales de emergencia de Brasil. Llamada gratuita desde cualquier teléfono.': ['Números nacionais de emergência. Ligação gratuita de qualquer telefone.', 'Brazil’s national emergency numbers. Free to call from any phone.'],
+  'Consejos escritos y revisados con fuente. Se eligen según el clima, el mar y el tránsito de ahora, sin IA.': ['Dicas escritas e conferidas, com fonte. São escolhidas pelo clima, o mar e o trânsito de agora, sem IA.', 'Tips written and checked, with sources. Picked by current weather, sea and traffic, no AI.'],
+
+  // avisos
+  'Peligro potencial': ['Perigo potencial', 'Potential danger'], 'Peligro': ['Perigo', 'Danger'], 'Gran peligro': ['Grande perigo', 'Great danger'],
+  'Lluvia desde las {h}': ['Chuva a partir das {h}', 'Rain from {h}'],
+  'Probabilidad del {p}%. Mirá el itinerario de lluvia.': ['Chance de {p}%. Veja o roteiro de chuva.', '{p}% chance. Check the rainy-day itinerary.'],
+  'UV extremo de {a} a {b}': ['UV extremo das {a} às {b}', 'Extreme UV from {a} to {b}'],
+  'Índice {n}. Buscá sombra y renová el protector cada 2 horas.': ['Índice {n}. Procure sombra e reaplique o protetor a cada 2 horas.', 'Index {n}. Seek shade and reapply sunscreen every 2 hours.'],
+  'Mar agitado': ['Mar agitado', 'Rough sea'], 'Olas de {m} m. Bañate frente al guardavidas.': ['Ondas de {m} m. Entre no mar perto do guarda-vidas.', '{m} m waves. Swim near the lifeguard.'],
+  '1 activo': ['1 ativo', '1 active'], '{n} activos': ['{n} ativos', '{n} active'], 'Todos': ['Todos', 'All'], 'Clima': ['Clima', 'Weather'],
+  'Todo tranquilo por ahora. Te avisamos acá si algo cambia.': ['Tudo tranquilo por enquanto. Avisamos aqui se algo mudar.', 'All calm for now. We’ll let you know here if anything changes.'],
+  'Avisos oficiales del INMET y reglas sobre los datos de ahora. Elegí cuáles ver en Perfil.': ['Avisos oficiais do INMET e regras sobre os dados de agora. Escolha quais ver no Perfil.', 'Official INMET alerts plus rules on current data. Choose which ones to see in Profile.'],
+
+  // explorar
+  'Buscar': ['Buscar', 'Search'], 'Playas, miradores, restaurantes…': ['Praias, mirantes, restaurantes…', 'Beaches, viewpoints, restaurants…'],
+  'Todo': ['Tudo', 'All'], 'Miradores': ['Mirantes', 'Viewpoints'], 'Cultura': ['Cultura', 'Culture'], 'Compras': ['Compras', 'Shopping'],
+  'Bajo techo': ['Coberto', 'Indoors'], 'Nada encontrado. Probá con otra palabra.': ['Nada encontrado. Tente outra palavra.', 'Nothing found. Try another word.'],
+  'Lugares conocidos de la Isla. Lista inicial en revisión por el equipo; confirmá horarios en el lugar.': ['Lugares conhecidos da Ilha. Lista inicial em revisão pela equipe; confirme horários no local.', 'Well-known places on the Island. Initial list under review by our team; check opening hours on site.'],
+
+  // perfil e boas-vindas
+  'Idioma': ['Idioma', 'Language'], 'Tema': ['Tema', 'Theme'], 'Oscuro': ['Escuro', 'Dark'], 'Claro': ['Claro', 'Light'], 'Automático': ['Automático', 'Auto'],
+  'El tema claro "Sol fuerte" se lee mejor en la playa, bajo el sol.': ['O tema claro "Sol forte" fica mais legível na praia, sob o sol.', 'The light "Bright sun" theme is easier to read at the beach, in the sun.'],
+  'Qué mostrar en Avisos': ['O que mostrar em Avisos', 'What to show in Alerts'],
+  'Lluvia y tormentas': ['Chuva e tempestades', 'Rain & storms'], 'UV alto y calor': ['UV alto e calor', 'High UV & heat'], 'Tránsito en los tramos': ['Trânsito nos trechos', 'Traffic on the roads'], 'Mar agitado y viento': ['Mar agitado e vento', 'Rough sea & wind'],
+  'Los avisos oficiales del INMET se muestran siempre.': ['Os avisos oficiais do INMET aparecem sempre.', 'Official INMET alerts are always shown.'],
+  'Playas favoritas': ['Praias favoritas', 'Favorite beaches'], 'Instalar en el celular': ['Instalar no celular', 'Install on your phone'],
+  'En iPhone: tocá Compartir y después "Agregar a inicio".': ['No iPhone: toque em Compartilhar e depois em "Adicionar à Tela de Início".', 'On iPhone: tap Share, then "Add to Home Screen".'],
+  'En el menú del navegador, tocá "Instalar app" o "Agregar a la pantalla de inicio".': ['No menu do navegador, toque em "Instalar app" ou "Adicionar à tela inicial".', 'In the browser menu, tap "Install app" or "Add to Home screen".'],
+  'Tus elecciones quedan guardadas solo en este dispositivo.': ['Suas escolhas ficam salvas só neste aparelho.', 'Your choices are saved only on this device.'],
+  'versión de prueba': ['versão de teste', 'test version'],
+  'Elegí tu idioma': ['Escolha seu idioma', 'Choose your language'], 'Continuar': ['Continuar', 'Continue'],
+  'Podés cambiarlo cuando quieras en Perfil.': ['Você pode mudar quando quiser no Perfil.', 'You can change it anytime in Profile.'],
+};

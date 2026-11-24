@@ -1,0 +1,19 @@
+{
+  "name": "SC Explorer · Florianópolis",
+  "short_name": "SC Explorer",
+  "description": "Playas, tránsito, clima, mar y consejos para disfrutar Florianópolis.",
+  "lang": "es-AR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#050D18",
+  "theme_color": "#050D18",
+  "categories": ["travel", "weather", "navigation"],
+  "icons": [
+    { "src": "/icones/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icones/icone-mascara-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icones/icone.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

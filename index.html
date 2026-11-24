@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es-AR" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SC Explorer · Florianópolis</title>
+  <meta name="description" content="Playas, tránsito, clima, mar y consejos para disfrutar Florianópolis. Praias, trânsito, clima e dicas em Florianópolis.">
+  <meta name="theme-color" content="#050D18">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icones/icone.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icones/icone-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SC Explorer">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700&display=swap">
+  <script>
+    // Tema antes do primeiro desenho (evita o piscar de cor).
+    try { var t = JSON.parse(localStorage.getItem('sce-tema') || 'null'); var q = new URLSearchParams(location.search).get('tema');
+      if (q === 'claro' || q === 'escuro') t = q;
+      if (t === 'claro' || (!t && matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.dataset.theme = 'light'; } catch (e) {}
+  </script>
+</head>
+<body>
+  <div id="app" class="app"></div>
+  <noscript>SC Explorer necesita JavaScript · precisa de JavaScript · needs JavaScript.</noscript>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

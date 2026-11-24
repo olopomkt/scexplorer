@@ -1,0 +1,40 @@
+# SC Explorer — site estático (Vite) + função agendada que coleta os dados a cada 12 min.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+  # Deploy SÓ com aprovação do dono: o commit precisa ter [deploy] na mensagem. Ver o script.
+  ignore = "bash scripts/netlify-ignore.sh"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # Não são segredo: vão para o navegador (a chave publishable só lê o que a RLS libera).
+  # Os segredos de verdade (SUPABASE_SECRET_KEY, TOMTOM_KEY, WEATHERAPI_KEY, OPENWEATHER_KEY) seguem vigiados.
+  SECRETS_SCAN_OMIT_KEYS = "SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# SPA: toda rota cai no index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(self), camera=(), microphone=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"

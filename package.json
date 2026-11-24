@@ -1,0 +1,17 @@
+{
+  "name": "sc-explorer",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "coletar": "node --env-file=.env scripts/coletar-local.mjs",
+    "migrar": "node --env-file=.env scripts/aplicar-migration.mjs"
+  },
+  "devDependencies": {
+    "pg": "8.13.1",
+    "vite": "5.4.20"
+  }
+}
